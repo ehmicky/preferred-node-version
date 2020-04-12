@@ -49,6 +49,7 @@
     "test": "test"
   },
   "dependencies": {
+    "filter-obj": "^2.0.1",
     "is-plain-obj": "^2.1.0",
     "jest-validate": "^25.3.0",
     "normalize-node-version": "^7.1.0",
