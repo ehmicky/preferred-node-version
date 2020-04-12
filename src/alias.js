@@ -6,7 +6,7 @@ import { validRange } from 'semver'
 
 const pExecFile = promisify(execFile)
 
-// nvm allows several aliases like `lts/*`
+// Most Node.js version managers allow aliases like `lts/*` or `latest`
 export const nodeVersionAlias = async function (rawVersion) {
   const versionRange = ALIASES[rawVersion]
 
@@ -45,18 +45,21 @@ const ALIASES = {
 
 // Retrieve nvm custom alias
 const getCustomAlias = function (rawVersion) {
-  if (platform === 'win32') {
-    return
-  }
-
   return runNvmCommand(`nvm_alias ${rawVersion}`)
 }
 
 // nvm requires Bash and reading the user's `.profile` to source `nvm.sh`
 const runNvmCommand = async function (command) {
+  if (platform === 'win32') {
+    return ''
+  }
+
   try {
     const { stdout } = await pExecFile('bash', ['-ic', command])
     return stdout.trim()
+    // Among possible errors:
+    //   - Setup issue: Bash or nvm not installed, Bash setup error, etc.
+    //   - Alias does not exist
   } catch (error) {
     return ''
   }
