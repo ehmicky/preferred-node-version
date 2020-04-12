@@ -1,14 +1,10 @@
-import { execFile } from 'child_process'
-import { platform } from 'process'
-import { promisify } from 'util'
-
 import { validRange } from 'semver'
 
-const pExecFile = promisify(execFile)
+import { getNvmSystemVersion, getNvmCustomAlias } from './nvm.js'
 
 // Most Node.js version managers allow aliases like `lts/*` or `latest`
 export const nodeVersionAlias = async function (rawVersion) {
-  const versionRange = ALIASES[rawVersion]
+  const versionRange = await getCommonAlias(rawVersion)
 
   if (versionRange !== undefined) {
     return versionRange
@@ -18,13 +14,27 @@ export const nodeVersionAlias = async function (rawVersion) {
     return rawVersion
   }
 
-  const customAlias = await getCustomAlias(rawVersion)
+  const customAlias = await getNvmCustomAlias(rawVersion)
 
   if (customAlias !== undefined) {
     return customAlias
   }
 
   throw new Error(`Invalid Node.js version: ${rawVersion}`)
+}
+
+const getCommonAlias = function (rawVersion) {
+  const versionRange = ALIASES[rawVersion]
+
+  if (versionRange === undefined) {
+    return
+  }
+
+  if (typeof versionRange !== 'function') {
+    return versionRange
+  }
+
+  return versionRange()
 }
 
 const ALIASES = {
@@ -36,31 +46,11 @@ const ALIASES = {
   node: '*',
   // Latest version (n, fish-nvm)
   current: '*',
+  // Version if nvm was not installed
+  system: getNvmSystemVersion,
   // Alias from nvm. Now that iojs is merged to Node.js, it is always this
   // version.
   iojs: '4.0.0',
   // Old deprecated nvm alias
   unstable: '0.11',
-}
-
-// Retrieve nvm custom alias
-const getCustomAlias = function (rawVersion) {
-  return runNvmCommand(`nvm_alias ${rawVersion}`)
-}
-
-// nvm requires Bash and reading the user's `.profile` to source `nvm.sh`
-const runNvmCommand = async function (command) {
-  if (platform === 'win32') {
-    return ''
-  }
-
-  try {
-    const { stdout } = await pExecFile('bash', ['-ic', command])
-    return stdout.trim()
-    // Among possible errors:
-    //   - Setup issue: Bash or nvm not installed, Bash setup error, etc.
-    //   - Alias does not exist
-  } catch (error) {
-    return ''
-  }
 }
