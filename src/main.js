@@ -1,5 +1,4 @@
 import { promises as fs } from 'fs'
-import { version as processVersion } from 'process'
 
 import normalizeNodeVersion from 'normalize-node-version'
 
@@ -13,7 +12,7 @@ export const preferredNodeVersion = async function (opts) {
   const nodeVersionFile = await findNodeVersionFile(cwd)
 
   if (nodeVersionFile === undefined) {
-    return processVersion
+    return {}
   }
 
   const versionRange = loadNodeVersionFile(nodeVersionFile)

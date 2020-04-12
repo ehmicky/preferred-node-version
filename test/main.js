@@ -1,4 +1,4 @@
-import { versions, cwd as getCwd, chdir } from 'process'
+import { cwd as getCwd, chdir } from 'process'
 
 import test from 'ava'
 import { each } from 'test-each'
@@ -13,7 +13,6 @@ const VERSIONS = {
   nave: '4.1.2',
   nvmrc: '4.2.6',
   nodeVersion: '4.3.2',
-  current: versions.node,
 }
 
 each(
@@ -21,8 +20,6 @@ each(
     { fixture: 'naverc', result: VERSIONS.nave },
     { fixture: 'node-version', result: VERSIONS.nodeVersion },
     { fixture: 'nvmrc', result: VERSIONS.nvmrc },
-    { fixture: 'mixed', result: VERSIONS.nodeVersion },
-    { opts: { cwd: '/' }, result: VERSIONS.current },
   ],
   ({ title }, { opts, fixture, result }) => {
     test(`Resolve aliases | ${title}`, async (t) => {
