@@ -9,7 +9,7 @@ import { getOpts } from './options.js'
 import { isPackageJson, loadPackageJson } from './package.js'
 
 export const preferredNodeVersion = async function (opts) {
-  const { cwd } = getOpts(opts)
+  const { cwd, ...normalizeOpts } = getOpts(opts)
   const nodeVersionFile = await findNodeVersionFile(cwd)
 
   if (nodeVersionFile === undefined) {
@@ -18,8 +18,7 @@ export const preferredNodeVersion = async function (opts) {
 
   const versionRange = loadNodeVersionFile(nodeVersionFile)
   const versionRangeA = replaceAliases(versionRange)
-  // TODO: add options
-  const version = normalizeNodeVersion(versionRangeA)
+  const version = normalizeNodeVersion(versionRangeA, { ...normalizeOpts, cwd })
   return version
 }
 

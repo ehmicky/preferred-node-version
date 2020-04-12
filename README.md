@@ -38,8 +38,26 @@ _Returns_: `Promise<object>`
 _Type_: `string`\
 _Default_: `process.cwd()`
 
-When using the [`.` alias](#supported-aliases), start looking for a Node.js
-version file from this directory.
+Start looking for a Node.js version file from this directory.
+
+#### cache
+
+_Type_: `boolean`\
+_Default_: `true`
+
+Cache the HTTP request to retrieve the list of available Node.js versions. The
+cache is invalidated after one hour.
+
+#### mirror
+
+_Type_: `string`\
+_Default_: `https://nodejs.org/dist`
+
+Base URL to fetch the list of available Node.js versions. Can be customized (for
+example `https://npm.taobao.org/mirrors/node`).
+
+The following environment variables can also be used: `NODE_MIRROR`,
+`NVM_NODEJS_ORG_MIRROR`, `N_NODE_MIRROR` or `NODIST_NODE_MIRROR`.
 
 # See also
 
