@@ -11,9 +11,7 @@ export const getNvmCustomAlias = function (rawVersion) {
 
 // Retrieve Node.js version outside nvm
 export const getNvmSystemVersion = function () {
-  return runNvmCommand(
-    'nvm deactivate >/dev/null 2>&1 && command -v node >/dev/null 2>&1 && node --version',
-  )
+  return runNvmCommand('nvm deactivate >/dev/null && node --version')
 }
 
 // nvm requires Bash and reading the user's `.profile` to source `nvm.sh`
