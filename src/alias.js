@@ -7,7 +7,7 @@ import { validRange } from 'semver'
 const pExecFile = promisify(execFile)
 
 // nvm allows several aliases like `lts/*`
-export const nodeVersionAlias = function (rawVersion) {
+export const nodeVersionAlias = async function (rawVersion) {
   const versionRange = ALIASES[rawVersion]
 
   if (versionRange !== undefined) {
@@ -18,7 +18,13 @@ export const nodeVersionAlias = function (rawVersion) {
     return rawVersion
   }
 
-  return getCustomAlias(rawVersion)
+  const customAlias = await getCustomAlias(rawVersion)
+
+  if (customAlias !== undefined) {
+    return customAlias
+  }
+
+  throw new Error(`Invalid Node.js version: ${rawVersion}`)
 }
 
 const ALIASES = {
@@ -38,18 +44,12 @@ const ALIASES = {
 }
 
 // Retrieve nvm custom alias
-const getCustomAlias = async function (rawVersion) {
+const getCustomAlias = function (rawVersion) {
   if (platform === 'win32') {
     return
   }
 
-  const customAlias = await runNvmCommand(`nvm_alias ${rawVersion}`)
-
-  if (customAlias === '') {
-    throw new Error(`Invalid Node.js version: ${rawVersion}`)
-  }
-
-  return customAlias
+  return runNvmCommand(`nvm_alias ${rawVersion}`)
 }
 
 // nvm requires Bash and reading the user's `.profile` to source `nvm.sh`
