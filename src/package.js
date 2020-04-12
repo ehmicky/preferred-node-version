@@ -1,23 +1,18 @@
 import isPlainObj from 'is-plain-obj'
 
-import { safeReadFile } from './fs.js'
-
-// Check whether `package.json` file
-export const isPackageJson = function (path) {
-  return path.endsWith(PACKAGE_JSON_FILE)
-}
-
-export const PACKAGE_JSON_FILE = 'package.json'
-
-// Check whether `package.json` file has `engines.node`
-export const fileHasEnginesNode = async function (path) {
-  const content = await safeReadFile(path, 'utf8')
-
+// Retrieve `engines.node` from `package.json`
+export const loadPackageJson = function (content) {
   if (!seemsValidPackageJson(content)) {
-    return false
+    return
   }
 
-  return loadPackageJson(content) !== undefined
+  const packageJson = safeJsonParse(content)
+
+  if (!objectHasEnginesNode(packageJson)) {
+    return
+  }
+
+  return packageJson.engines.node
 }
 
 // Performance optimization. Quickly check if `package.json` looks like it has
@@ -27,17 +22,6 @@ const seemsValidPackageJson = function (content) {
 }
 
 const PACKAGE_JSON_VALID_WORDS = ['"engines"', '"node"']
-
-// Retrieve `engines.node` from `package.json`
-export const loadPackageJson = function (content) {
-  const packageJson = safeJsonParse(content)
-
-  if (!objectHasEnginesNode(packageJson)) {
-    return
-  }
-
-  return packageJson.engines.node
-}
 
 const safeJsonParse = function (content) {
   try {
