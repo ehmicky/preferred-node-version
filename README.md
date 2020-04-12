@@ -16,6 +16,7 @@ Get the preferred Node.js version of a user or project.
 const preferredNodeVersion = require('preferred-node-version')
 
 const { version } = await preferredNodeVersion(options)
+console.log(version) // 12.10.0
 ```
 
 # Install
