@@ -14,7 +14,8 @@ in in the current directory, any parent directories or the home directory.
 This also looks for a
 [`.node-version`](https://github.com/jasongin/nvs#automatic-switching-per-directory),
 [`.n-node-version`](https://github.com/tj/n#specifying-node-versions),
-[`.naverc`](https://github.com/isaacs/nave#automagical) file or for a
+[`.naverc`](https://github.com/isaacs/nave#automagical),
+[`.nodeenvrc`](https://github.com/ekalinin/nodeenv#configuration) file or for a
 [`NODE_VERSION`](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript)
 or [`NODIST_NODE_VERSION`](https://github.com/nullivex/nodist#scope-precedence)
 environment variable.

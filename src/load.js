@@ -1,6 +1,7 @@
 import { basename } from 'path'
 
 import { safeReadFile } from './fs.js'
+import { loadNodeEnvRc } from './nodeenv.js'
 import { loadPackageJson } from './package.js'
 
 // Load Node.js version file
@@ -14,7 +15,7 @@ export const loadVersionFile = async function (filePath) {
 
   const filename = basename(filePath)
   const loadFunction = LOAD_FUNCTIONS[filename]
-  const rawVersion = await loadFunction(contentA)
+  const rawVersion = loadFunction(contentA)
   return rawVersion
 }
 
@@ -32,6 +33,8 @@ const LOAD_FUNCTIONS = {
   '.naverc': identity,
   // Used by nvs
   '.node-version': identity,
+  // Used by nodeenv
+  '.nodeenvrc': loadNodeEnvRc,
   // Used by nvm and many other tools
   '.nvmrc': identity,
   // package.json `engines.node`
