@@ -1,23 +1,20 @@
 import { validRange } from 'semver'
 
+import { getLts } from './lts.js'
 import { getNvmSystemVersion, getNvmCustomAlias } from './nvm.js'
 
 // Most Node.js version managers allow aliases like `lts/*` or `latest`
-export const nodeVersionAlias = async function (rawVersion) {
+export const nodeVersionAlias = async function (rawVersion, allNodeOpts) {
   const versionRange = await getCommonAlias(rawVersion)
 
   if (versionRange !== undefined) {
     return versionRange
   }
 
-  if (validRange(rawVersion) !== null) {
-    return rawVersion
-  }
+  const versionRangeA = await getAlias(rawVersion, allNodeOpts)
 
-  const customAlias = await getNvmCustomAlias(rawVersion)
-
-  if (customAlias !== undefined) {
-    return customAlias
+  if (versionRangeA !== undefined) {
+    return versionRangeA
   }
 
   throw new Error(`Invalid Node.js version: ${rawVersion}`)
@@ -53,4 +50,16 @@ const ALIASES = {
   iojs: '4.0.0',
   // Old deprecated nvm alias
   unstable: '0.11',
+}
+
+const getAlias = function (rawVersion, allNodeOpts) {
+  if (rawVersion.startsWith('lts')) {
+    return getLts(rawVersion, allNodeOpts)
+  }
+
+  if (validRange(rawVersion) !== null) {
+    return rawVersion
+  }
+
+  return getNvmCustomAlias(rawVersion)
 }

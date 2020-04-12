@@ -6,7 +6,7 @@ import { findVersion } from './find.js'
 import { getOpts } from './options.js'
 
 export const preferredNodeVersion = async function (opts) {
-  const { cwd, ...normalizeOpts } = getOpts(opts)
+  const { cwd, normalizeOpts, allNodeOpts } = getOpts(opts)
   const { filePath, envVariable, rawVersion } = await findVersion(cwd)
 
   if (rawVersion === undefined) {
@@ -14,11 +14,8 @@ export const preferredNodeVersion = async function (opts) {
   }
 
   try {
-    const versionRange = await nodeVersionAlias(rawVersion)
-    const version = await normalizeNodeVersion(versionRange, {
-      ...normalizeOpts,
-      cwd,
-    })
+    const versionRange = await nodeVersionAlias(rawVersion, allNodeOpts)
+    const version = await normalizeNodeVersion(versionRange, normalizeOpts)
     return { filePath, envVariable, rawVersion, versionRange, version }
   } catch (error) {
     throw getError(error, filePath, envVariable)

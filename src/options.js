@@ -9,7 +9,11 @@ export const getOpts = function (opts = {}) {
 
   const optsA = filterObj(opts, isDefined)
   const optsB = { ...DEFAULT_OPTS(), ...optsA }
-  return optsB
+
+  const { cwd, fetch, mirror } = optsB
+  const normalizeOpts = { cwd, fetch, mirror }
+  const allNodeOpts = { fetch, mirror }
+  return { cwd, normalizeOpts, allNodeOpts }
 }
 
 const DEFAULT_OPTS = () => ({
