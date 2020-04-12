@@ -1,12 +1,12 @@
 // nvm allows several aliases like `lts/*`
-export const replaceAliases = function (versionRange) {
-  const aliasedVersionRange = ALIASES[versionRange]
+export const getVersionRange = function (rawVersion) {
+  const versionRange = ALIASES[rawVersion]
 
-  if (aliasedVersionRange === undefined) {
-    return versionRange
+  if (versionRange === undefined) {
+    return rawVersion
   }
 
-  return aliasedVersionRange
+  return versionRange
 }
 
 const ALIASES = {

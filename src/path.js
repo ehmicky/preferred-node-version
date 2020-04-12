@@ -12,7 +12,7 @@ import {
 
 // Find any file indicating the current directory's Node.js version
 // Use p-locate instead of find-up for performance (more parallelism)
-export const findNodeVersionFile = function (cwd) {
+export const getFilePath = function (cwd) {
   const searchFiles = getSearchFiles(cwd)
   return pLocate(searchFiles, isNodeVersionFile)
 }

@@ -2,26 +2,29 @@ import { promises as fs } from 'fs'
 
 import normalizeNodeVersion from 'normalize-node-version'
 
-import { replaceAliases } from './alias.js'
-import { findNodeVersionFile } from './find.js'
+import { getVersionRange } from './alias.js'
 import { getOpts } from './options.js'
 import { isPackageJson, loadPackageJson } from './package.js'
+import { getFilePath } from './path.js'
 
 export const preferredNodeVersion = async function (opts) {
   const { cwd, ...normalizeOpts } = getOpts(opts)
-  const nodeVersionFile = await findNodeVersionFile(cwd)
+  const filePath = await getFilePath(cwd)
 
-  if (nodeVersionFile === undefined) {
+  if (filePath === undefined) {
     return {}
   }
 
-  const versionRange = loadNodeVersionFile(nodeVersionFile)
-  const versionRangeA = replaceAliases(versionRange)
-  const version = normalizeNodeVersion(versionRangeA, { ...normalizeOpts, cwd })
-  return version
+  const rawVersion = getRawVersion(filePath)
+  const versionRange = getVersionRange(rawVersion)
+  const version = await normalizeNodeVersion(versionRange, {
+    ...normalizeOpts,
+    cwd,
+  })
+  return { filePath, rawVersion, versionRange, version }
 }
 
-const loadNodeVersionFile = async function (nodeVersionFile) {
+const getRawVersion = async function (nodeVersionFile) {
   const content = await fs.readFile(nodeVersionFile, 'utf8')
   const contentA = content.trim()
 

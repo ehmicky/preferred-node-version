@@ -25,8 +25,8 @@ each(
     test(`Resolve aliases | ${title}`, async (t) => {
       const cwd =
         fixture === undefined ? undefined : `${FIXTURES_DIR}/${fixture}`
-      const output = await preferredNodeVersion({ cwd, ...opts })
-      t.is(output, result)
+      const { version } = await preferredNodeVersion({ cwd, ...opts })
+      t.is(version, result)
     })
   },
 )
@@ -36,8 +36,8 @@ test.serial('Option cwd defaults to the current directory', async (t) => {
   chdir(`${FIXTURES_DIR}/nvmrc`)
 
   try {
-    const versionRange = await preferredNodeVersion()
-    t.is(versionRange, VERSIONS.nvmrc)
+    const { version } = await preferredNodeVersion()
+    t.is(version, VERSIONS.nvmrc)
   } finally {
     chdir(currentCwd)
   }
