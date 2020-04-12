@@ -31,9 +31,15 @@ const getSearchFiles = function (cwd) {
 
 // List of files indicating Node.js version
 const NODE_VERSION_FILES = [
+  // Used by n
+  '.n-node-version',
+  // Used by nave
   '.naverc',
+  // Used by nvs
   '.node-version',
+  // Used by nvm and many other tools
   '.nvmrc',
+  // package.json
   PACKAGE_JSON_FILE,
 ]
 

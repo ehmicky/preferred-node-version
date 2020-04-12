@@ -8,7 +8,9 @@
 Get the preferred Node.js version of a user or project.
 
 This takes into account [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc),
-`.node-version`, [`.naverc`](https://github.com/isaacs/nave#automagical) and
+[`.node-version`](https://github.com/jasongin/nvs#automatic-switching-per-directory),
+[`.n-node-version`](https://github.com/tj/n#specifying-node-versions),
+[`.naverc`](https://github.com/isaacs/nave#automagical) and
 [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines).
 Those files are looked in the current directory, any parent directories or the
 home directory.
