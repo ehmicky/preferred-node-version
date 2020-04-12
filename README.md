@@ -7,6 +7,12 @@
 
 Get the preferred Node.js version of a user or project.
 
+This takes into account [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc),
+`.node-version`, [`.naverc`](https://github.com/isaacs/nave#automagical) and
+[`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines).
+Those files are looked in the current directory, any parent directories or the
+home directory.
+
 # Example
 
 <!-- Remove 'eslint-skip' once estree supports top-level await -->
@@ -31,6 +37,39 @@ npm install preferred-node-version
 
 `options`: `object`\
 _Returns_: `Promise<object>`
+
+### Return value
+
+The returned promise resolves to an object with the following properties. An
+empty object is returned if no preferred Node.js version was found.
+
+If a file cannot be read or if it contains an invalid version, the promise is
+rejected with an error.
+
+#### version
+
+_Type_: `string`
+
+Full Node.js version. For example `12.16.2`
+
+#### versionRange
+
+_Type_: `string`
+
+Node.js version range. For example `12` or `12.16.2`
+
+#### rawVersion
+
+_Type_: `string`
+
+Node.js version as specified in the Node.js version file. This might include
+aliases. For example `lts/erbium`, `12` or `12.16.2`.
+
+#### filePath
+
+_Type_: `string`
+
+Absolute path to the Node.js version file.
 
 ### options
 

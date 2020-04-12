@@ -10,7 +10,10 @@ export const getVersionRange = function (rawVersion) {
 }
 
 const ALIASES = {
+  // .nvmrc
   node: '*',
   stable: '*',
   unstable: '0.11',
+  // .naverc
+  latest: '*',
 }
