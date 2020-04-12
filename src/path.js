@@ -1,9 +1,9 @@
-import { promises as fs } from 'fs'
 import { join } from 'path'
 
 import pLocate from 'p-locate'
 
 import { getSearchDirs } from './dirs.js'
+import { isExistingFile } from './fs.js'
 import {
   isPackageJson,
   fileHasEnginesNode,
@@ -55,13 +55,4 @@ const isNodeVersionFile = async function (path) {
   }
 
   return true
-}
-
-const isExistingFile = async function (path) {
-  try {
-    const fileStat = await fs.stat(path)
-    return fileStat.isFile()
-  } catch (error) {
-    return false
-  }
 }

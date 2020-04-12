@@ -2,6 +2,7 @@ import normalizeNodeVersion from 'normalize-node-version'
 
 import { nodeVersionAlias } from './alias.js'
 import { getVersionEnvVariable } from './env.js'
+import { getError } from './error.js'
 import { getVersionFile } from './file.js'
 import { getOpts } from './options.js'
 
@@ -13,12 +14,16 @@ export const preferredNodeVersion = async function (opts) {
     return {}
   }
 
-  const versionRange = nodeVersionAlias(rawVersion)
-  const version = await normalizeNodeVersion(versionRange, {
-    ...normalizeOpts,
-    cwd,
-  })
-  return { filePath, envVariable, rawVersion, versionRange, version }
+  try {
+    const versionRange = await nodeVersionAlias(rawVersion)
+    const version = await normalizeNodeVersion(versionRange, {
+      ...normalizeOpts,
+      cwd,
+    })
+    return { filePath, envVariable, rawVersion, versionRange, version }
+  } catch (error) {
+    throw getError(error, filePath, envVariable)
+  }
 }
 
 const findVersion = async function (cwd) {
@@ -30,6 +35,8 @@ const findVersion = async function (cwd) {
 
   return getVersionEnvVariable()
 }
+
+preferredNodeVersion().then(console.log, console.log)
 
 // We do not use `export default` because Babel transpiles it in a way that
 // requires CommonJS users to `require(...).default` instead of `require(...)`.

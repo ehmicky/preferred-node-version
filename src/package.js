@@ -1,6 +1,6 @@
-import { promises as fs } from 'fs'
-
 import isPlainObj from 'is-plain-obj'
+
+import { safeReadFile } from './fs.js'
 
 // Check whether `package.json` file
 export const isPackageJson = function (path) {
@@ -11,7 +11,7 @@ export const PACKAGE_JSON_FILE = 'package.json'
 
 // Check whether `package.json` file has `engines.node`
 export const fileHasEnginesNode = async function (path) {
-  const content = await fs.readFile(path, 'utf8')
+  const content = await safeReadFile(path, 'utf8')
 
   if (!seemsValidPackageJson(content)) {
     return false
