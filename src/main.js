@@ -1,6 +1,6 @@
 import normalizeNodeVersion from 'normalize-node-version'
 
-import { getVersionRange } from './alias.js'
+import { nodeVersionAlias } from './alias.js'
 import { getVersionEnvVariable } from './env.js'
 import { getVersionFile } from './file.js'
 import { getOpts } from './options.js'
@@ -13,7 +13,7 @@ export const preferredNodeVersion = async function (opts) {
     return {}
   }
 
-  const versionRange = getVersionRange(rawVersion)
+  const versionRange = nodeVersionAlias(rawVersion)
   const version = await normalizeNodeVersion(versionRange, {
     ...normalizeOpts,
     cwd,

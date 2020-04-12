@@ -1,5 +1,5 @@
 // nvm allows several aliases like `lts/*`
-export const getVersionRange = function (rawVersion) {
+export const nodeVersionAlias = function (rawVersion) {
   const versionRange = ALIASES[rawVersion]
 
   if (versionRange === undefined) {
