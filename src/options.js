@@ -18,8 +18,8 @@ const DEFAULT_OPTS = () => ({
 
 const EXAMPLE_OPTS = () => ({
   ...DEFAULT_OPTS(),
-  // Passed to `normalize-node-version`
-  cache: true,
+  // Passed to `all-node-versions`
+  fetch: true,
   // Passed to `fetch-node-website`
   mirror: 'https://nodejs.org/dist',
 })
