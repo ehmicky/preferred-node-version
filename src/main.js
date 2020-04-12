@@ -1,38 +1,34 @@
-import { promises as fs } from 'fs'
-
 import normalizeNodeVersion from 'normalize-node-version'
 
 import { getVersionRange } from './alias.js'
+import { getVersionEnvVariable } from './env.js'
+import { getVersionFile } from './file.js'
 import { getOpts } from './options.js'
-import { isPackageJson, loadPackageJson } from './package.js'
-import { getFilePath } from './path.js'
 
 export const preferredNodeVersion = async function (opts) {
   const { cwd, ...normalizeOpts } = getOpts(opts)
-  const filePath = await getFilePath(cwd)
+  const { filePath, envVariable, rawVersion } = await findVersion(cwd)
 
-  if (filePath === undefined) {
+  if (rawVersion === undefined) {
     return {}
   }
 
-  const rawVersion = getRawVersion(filePath)
   const versionRange = getVersionRange(rawVersion)
   const version = await normalizeNodeVersion(versionRange, {
     ...normalizeOpts,
     cwd,
   })
-  return { filePath, rawVersion, versionRange, version }
+  return { filePath, envVariable, rawVersion, versionRange, version }
 }
 
-const getRawVersion = async function (nodeVersionFile) {
-  const content = await fs.readFile(nodeVersionFile, 'utf8')
-  const contentA = content.trim()
+const findVersion = async function (cwd) {
+  const { filePath, rawVersion } = await getVersionFile(cwd)
 
-  if (!isPackageJson(nodeVersionFile)) {
-    return contentA
+  if (rawVersion !== undefined) {
+    return { filePath, rawVersion }
   }
 
-  return loadPackageJson(contentA)
+  return getVersionEnvVariable()
 }
 
 // We do not use `export default` because Babel transpiles it in a way that
