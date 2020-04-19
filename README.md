@@ -7,9 +7,9 @@
 
 Get the preferred Node.js version of a user or project.
 
-This looks for a [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
+This looks for any [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
 [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
-in the current directory, any parent directories or the home directory.
+in the current directory, parent directories or home directory.
 
 This also looks for any
 [`.node-version`](https://github.com/jasongin/nvs#automatic-switching-per-directory),
