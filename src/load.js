@@ -6,7 +6,7 @@ import { loadPackageJson } from './package.js'
 
 // Load Node.js version file
 export const loadVersionFile = async function (filePath) {
-  const content = await safeReadFile(filePath, 'utf8')
+  const content = await safeReadFile(filePath)
   const contentA = content.trim()
 
   if (contentA === '') {

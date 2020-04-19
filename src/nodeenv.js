@@ -8,7 +8,7 @@ export const loadNodeEnvRc = function (content) {
     return
   }
 
-  return result[1].trim()
+  return result[1]
 }
 
 // Matches a line with `node = VERSION`

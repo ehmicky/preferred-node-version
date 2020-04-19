@@ -1,4 +1,4 @@
-import process from 'process'
+import { env } from 'process'
 
 // Retrieve Node.js version stored in environment variable.
 // Has less priority than version files because harder to localize to a specific
@@ -15,10 +15,10 @@ export const getVersionEnvVariable = function () {
 }
 
 const ENVIRONMENT_VARIABLES = [
-  // Netlify
-  'NODE_VERSION',
   // nodist
   'NODIST_NODE_VERSION',
+  // Netlify
+  'NODE_VERSION',
 ]
 
 const isDefined = function (envVariable) {
@@ -27,6 +27,5 @@ const isDefined = function (envVariable) {
 }
 
 const getRawVersion = function (envVariable) {
-  // eslint-disable-next-line node/no-process-env
-  return process.env[envVariable]
+  return env[envVariable]
 }
