@@ -5,31 +5,17 @@ import { each } from 'test-each'
 
 import preferredNodeVersion from '../src/main.js'
 
-const FIXTURES_DIR = `${__dirname}/fixtures`
+const FIXTURES_DIR = `${__dirname}/helpers/fixtures`
 
-// We use old Node.js versions to ensure new ones are not published, making
-// those tests fail
-const VERSIONS = {
-  nave: '4.1.2',
-  nvmrc: '4.2.6',
-  nodeVersion: '4.3.2',
-}
+const TEST_VERSION = '6.0.0'
 
-each(
-  [
-    { fixture: 'naverc', result: VERSIONS.nave },
-    { fixture: 'node-version', result: VERSIONS.nodeVersion },
-    { fixture: 'nvmrc', result: VERSIONS.nvmrc },
-  ],
-  ({ title }, { opts, fixture, result }) => {
-    test(`Resolve aliases | ${title}`, async (t) => {
-      const cwd =
-        fixture === undefined ? undefined : `${FIXTURES_DIR}/${fixture}`
-      const { version } = await preferredNodeVersion({ cwd, ...opts })
-      t.is(version, result)
-    })
-  },
-)
+each(['naverc', 'node-version', 'nvmrc'], ({ title }, fixture) => {
+  test(`Resolve aliases | ${title}`, async (t) => {
+    const cwd = `${FIXTURES_DIR}/${fixture}`
+    const { version } = await preferredNodeVersion({ cwd })
+    t.is(version, TEST_VERSION)
+  })
+})
 
 test.serial('Option cwd defaults to the current directory', async (t) => {
   const currentCwd = getCwd()
@@ -37,7 +23,7 @@ test.serial('Option cwd defaults to the current directory', async (t) => {
 
   try {
     const { version } = await preferredNodeVersion()
-    t.is(version, VERSIONS.nvmrc)
+    t.is(version, TEST_VERSION)
   } finally {
     chdir(currentCwd)
   }
