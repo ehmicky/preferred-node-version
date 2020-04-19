@@ -52,7 +52,7 @@
     "filter-obj": "^2.0.1",
     "is-plain-obj": "^2.1.0",
     "jest-validate": "^25.3.0",
-    "node-version-alias": "^1.0.0",
+    "node-version-alias": "^1.0.1",
     "p-locate": "^4.1.0"
   },
   "devDependencies": {
