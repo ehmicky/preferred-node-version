@@ -15,6 +15,7 @@ each(
     'nodeenvrc_case',
     'nodeenvrc_single_quotes',
     'nodeenvrc_double_quotes',
+    'nodeenvrc_empty',
     'nvmrc',
     'package',
     'package_invalid_json',
