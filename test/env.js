@@ -5,10 +5,8 @@ import { each } from 'test-each'
 
 import preferredNodeVersion from '../src/main.js'
 
-import { setHomeDir } from './helpers/main.js'
+import { setEmptyHomeDir, unsetHomeDir } from './helpers/main.js'
 import { TEST_VERSION } from './helpers/versions.js'
-
-setHomeDir('/')
 
 each(
   [
@@ -19,6 +17,7 @@ each(
     test.serial(
       `Can use environment variables for Node.js versions | ${title}`,
       async (t) => {
+        setEmptyHomeDir()
         // eslint-disable-next-line fp/no-mutation
         env[name] = value
 
@@ -36,6 +35,7 @@ each(
         } finally {
           // eslint-disable-next-line fp/no-delete
           delete env[name]
+          unsetHomeDir()
         }
       },
     )
@@ -43,6 +43,7 @@ each(
 )
 
 test.serial('Ignores empty environment variables', async (t) => {
+  setEmptyHomeDir()
   // eslint-disable-next-line fp/no-mutation
   env.NODE_VERSION = ' '
 
@@ -52,5 +53,6 @@ test.serial('Ignores empty environment variables', async (t) => {
   } finally {
     // eslint-disable-next-line fp/no-delete
     delete env.NODE_VERSION
+    unsetHomeDir()
   }
 })

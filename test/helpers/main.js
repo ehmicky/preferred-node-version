@@ -18,6 +18,10 @@ export const setHomeDir = function (homeDir = `${FIXTURES_DIR}/home`) {
   return homeDir
 }
 
+export const setEmptyHomeDir = function () {
+  return setHomeDir('/')
+}
+
 export const unsetHomeDir = function () {
   // eslint-disable-next-line fp/no-delete
   delete env.TEST_HOME_DIR

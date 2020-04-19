@@ -6,7 +6,7 @@ import preferredNodeVersion from '../src/main.js'
 import {
   runFixture,
   FIXTURES_DIR,
-  setHomeDir,
+  setEmptyHomeDir,
   unsetHomeDir,
 } from './helpers/main.js'
 import {
@@ -36,7 +36,7 @@ test('Returns information about the resolution', async (t) => {
 })
 
 test.serial('Returns an empty object if nothing was found', async (t) => {
-  setHomeDir('/')
+  setEmptyHomeDir()
 
   try {
     const result = await preferredNodeVersion({ cwd: '/' })
