@@ -1,6 +1,6 @@
+import { promises as fs } from 'fs'
 import { basename } from 'path'
 
-import { safeReadFile } from './fs.js'
 import { loadNodeEnvRc } from './nodeenv.js'
 import { loadPackageJson } from './package.js'
 
@@ -17,6 +17,15 @@ export const loadVersionFile = async function (filePath) {
   const loadFunction = LOAD_FUNCTIONS[filename]
   const rawVersion = loadFunction(contentA)
   return rawVersion
+}
+
+// I/O errors are silently skipped
+const safeReadFile = async function (path) {
+  try {
+    return await fs.readFile(path, 'utf8')
+  } catch {
+    return ''
+  }
 }
 
 // When whole version file content is the version itself
