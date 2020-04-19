@@ -1,3 +1,5 @@
+import { join } from 'path'
+
 import test from 'ava'
 import isPlainObj from 'is-plain-obj'
 
@@ -29,7 +31,7 @@ test('Returns information about the resolution', async (t) => {
   const { filePath, envVariable, rawVersion, version } = await runFixture(
     'version_range',
   )
-  t.is(filePath, `${FIXTURES_DIR}/version_range/.nvmrc`)
+  t.is(filePath, join(FIXTURES_DIR, 'version_range', '.nvmrc'))
   t.is(envVariable, undefined)
   t.is(rawVersion, VERSION_RANGE)
   t.is(version, RESOLVED_VERSION_RANGE)
