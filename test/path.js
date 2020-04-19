@@ -11,3 +11,9 @@ test('Prioritize closer directories', async (t) => {
   const { version } = await preferredNodeVersion({ cwd })
   t.is(version, TEST_VERSION)
 })
+
+test('Ignore version directories', async (t) => {
+  const cwd = `${FIXTURES_DIR}/directory`
+  const { version } = await preferredNodeVersion({ cwd })
+  t.is(version, TEST_VERSION)
+})
