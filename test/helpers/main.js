@@ -12,9 +12,13 @@ export const runFixture = function (fixture) {
 
 // Tests should not rely on the real machine's home directory since it is
 // machine-dependent and global
-export const setHomeDir = function () {
-  const homeDir = `${FIXTURES_DIR}/home`
+export const setHomeDir = function (homeDir = `${FIXTURES_DIR}/home`) {
   // eslint-disable-next-line fp/no-mutation
   env.TEST_HOME_DIR = homeDir
   return homeDir
+}
+
+export const unsetHomeDir = function () {
+  // eslint-disable-next-line fp/no-delete
+  delete env.TEST_HOME_DIR
 }
