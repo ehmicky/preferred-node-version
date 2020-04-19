@@ -1,7 +1,9 @@
+import { promises as fs } from 'fs'
+
 import test from 'ava'
 import { each } from 'test-each'
 
-import { runFixture } from './helpers/main.js'
+import { runFixture, FIXTURES_DIR } from './helpers/main.js'
 import { TEST_VERSION } from './helpers/versions.js'
 
 each(
@@ -18,7 +20,6 @@ each(
     'nodeenvrc_empty/subdir',
     'nvmrc',
     'package',
-    'package_invalid_json/subdir',
     'package_empty/subdir',
     'package_not_object/subdir',
     'package_no_engines/subdir',
@@ -33,3 +34,17 @@ each(
     })
   },
 )
+
+// We need to generate invalid `package.json` dynamically. Otherwise ESLint
+// throws an error.
+test('Ignore invalid package.json', async (t) => {
+  const packageJsonPath = `${FIXTURES_DIR}/package_invalid_json/subdir/package.json`
+  await fs.writeFile(packageJsonPath, 'test')
+
+  try {
+    const { version } = await runFixture('package_invalid_json/subdir')
+    t.is(version, TEST_VERSION)
+  } finally {
+    await fs.unlink(packageJsonPath)
+  }
+})
