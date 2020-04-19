@@ -20,6 +20,11 @@ each(
     'nodeenvrc_single_quotes',
     'nodeenvrc_double_quotes',
     'nvmrc',
+    'package',
+    'package_invalid_json',
+    'package_empty',
+    'package_not_object',
+    'package_no_engines',
   ],
   ({ title }, fixture) => {
     test(`Load version files | ${title}`, async (t) => {
