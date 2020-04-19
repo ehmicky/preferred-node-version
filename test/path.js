@@ -1,7 +1,9 @@
 import { promises as fs } from 'fs'
-import { platform } from 'process'
+import { platform, cwd as getCwd, chdir } from 'process'
 
 import test from 'ava'
+
+import preferredNodeVersion from '../src/main.js'
 
 import { runFixture, FIXTURES_DIR } from './helpers/main.js'
 import { TEST_VERSION } from './helpers/versions.js'
@@ -37,3 +39,15 @@ if (platform !== 'win32') {
     }
   })
 }
+
+test.serial('Option cwd defaults to the current directory', async (t) => {
+  const currentCwd = getCwd()
+  chdir(`${FIXTURES_DIR}/nvmrc`)
+
+  try {
+    const { version } = await preferredNodeVersion()
+    t.is(version, TEST_VERSION)
+  } finally {
+    chdir(currentCwd)
+  }
+})
