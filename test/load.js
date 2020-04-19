@@ -25,6 +25,9 @@ each(
     'package_empty',
     'package_not_object',
     'package_no_engines',
+    'package_no_engines_node',
+    'package_engines_node_invalid',
+    'package_engines_node_empty',
   ],
   ({ title }, fixture) => {
     test(`Load version files | ${title}`, async (t) => {
