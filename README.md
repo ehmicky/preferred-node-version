@@ -28,8 +28,18 @@ environment variable.
 ```js
 const preferredNodeVersion = require('preferred-node-version')
 
-const { version } = await preferredNodeVersion(options)
+const { version } = await preferredNodeVersion()
 console.log(version) // 12.10.0
+
+// Allowed options
+await preferredNodeVersion({
+  // Start looking for a Node.js version file from this directory
+  cwd: '/path/to/cwd',
+  // Use a mirror for Node.js binaries
+  mirror: 'https://npm.taobao.org/mirrors/node',
+  // Do not cache the list of available Node.js versions
+  fetch: true,
+})
 ```
 
 # Install
@@ -42,7 +52,7 @@ npm install preferred-node-version
 
 ## preferredNodeVersion(options?)
 
-`options`: `object`\
+`options`: `object?`\
 _Returns_: `Promise<object>`
 
 ### Return value
@@ -64,7 +74,8 @@ Full Node.js version. For example `12.16.2`
 _Type_: `string`
 
 Node.js version as specified in the Node.js version file. This might include
-aliases. For example `lts/erbium`, `12` or `12.16.2`.
+aliases or version ranges. For example `latest`, `lts/erbium`, `12` or
+`12.16.2`.
 
 #### filePath
 
