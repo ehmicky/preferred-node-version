@@ -9,15 +9,15 @@ Get the preferred Node.js version of a user or project.
 
 This looks for a [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
 [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
-in in the current directory, any parent directories or the home directory.
+in the current directory, any parent directories or the home directory.
 
-This also looks for a
+This also looks for any
 [`.node-version`](https://github.com/jasongin/nvs#automatic-switching-per-directory),
 [`.n-node-version`](https://github.com/tj/n#specifying-node-versions),
 [`.naverc`](https://github.com/isaacs/nave#automagical),
-[`.nodeenvrc`](https://github.com/ekalinin/nodeenv#configuration) file or for a
-[`NODE_VERSION`](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript)
-or [`NODIST_NODE_VERSION`](https://github.com/nullivex/nodist#scope-precedence)
+[`.nodeenvrc`](https://github.com/ekalinin/nodeenv#configuration) file or
+[`NODE_VERSION`](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript),
+[`NODIST_NODE_VERSION`](https://github.com/nullivex/nodist#scope-precedence)
 environment variable.
 
 # Example
@@ -81,14 +81,15 @@ aliases or version ranges. For example `latest`, `lts/erbium`, `12` or
 
 _Type_: `string?`
 
-Absolute path to the Node.js version file. Not defined if none was found.
+Absolute path to the Node.js version file. Either `filePath` or `envVariable` is
+defined.
 
 #### envVariable
 
 _Type_: `string?`
 
 Name of the environment variable containing the version. For example
-`NODE_VERSION`. Not defined if a version file was found instead.
+`NODE_VERSION`. Either `filePath` or `envVariable` is defined.
 
 ### options
 
