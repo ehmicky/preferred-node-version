@@ -1,9 +1,9 @@
 import { join } from 'path'
 
 import pLocate from 'p-locate'
+import { isFile } from 'path-type'
 
 import { getSearchDirs } from './dirs.js'
-import { isExistingFile } from './fs.js'
 import { loadVersionFile, NODE_VERSION_FILES } from './load.js'
 
 // Find any file indicating the current directory's Node.js version
@@ -27,7 +27,6 @@ const addNodeVersionFiles = function (searchDir) {
 // Check if the file exists and contains a Node.js version
 const isNodeVersionFile = async function (filePath) {
   return (
-    (await isExistingFile(filePath)) &&
-    (await loadVersionFile(filePath)) !== undefined
+    (await isFile(filePath)) && (await loadVersionFile(filePath)) !== undefined
   )
 }

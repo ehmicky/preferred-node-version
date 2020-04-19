@@ -53,7 +53,8 @@
     "is-plain-obj": "^2.1.0",
     "jest-validate": "^25.3.0",
     "node-version-alias": "^1.0.1",
-    "p-locate": "^4.1.0"
+    "p-locate": "^4.1.0",
+    "path-type": "^4.0.0"
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^0.31.37",

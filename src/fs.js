@@ -8,12 +8,3 @@ export const safeReadFile = async function (path) {
     return ''
   }
 }
-
-export const isExistingFile = async function (path) {
-  try {
-    const fileStat = await fs.stat(path)
-    return fileStat.isFile()
-  } catch (error) {
-    return false
-  }
-}
