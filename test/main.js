@@ -5,9 +5,8 @@ import { each } from 'test-each'
 
 import preferredNodeVersion from '../src/main.js'
 
+import { FIXTURES_DIR } from './helpers/main.js'
 import { TEST_VERSION } from './helpers/versions.js'
-
-const FIXTURES_DIR = `${__dirname}/helpers/fixtures`
 
 each(['naverc', 'node-version', 'nvmrc'], ({ title }, fixture) => {
   test(`Resolve aliases | ${title}`, async (t) => {
