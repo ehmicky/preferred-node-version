@@ -18,7 +18,7 @@ test('Look for version files in current directory', async (t) => {
 })
 
 test('Look for version files in parent directories', async (t) => {
-  const cwd = `${FIXTURES_DIR}/nvmrc_deep/subdir/subdir`
+  const cwd = `${FIXTURES_DIR}/deep/subdir/subdir`
   const { version } = await preferredNodeVersion({ cwd })
   t.is(version, TEST_VERSION)
 })
