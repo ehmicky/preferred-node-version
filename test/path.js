@@ -17,3 +17,9 @@ test('Ignore version directories', async (t) => {
   const { version } = await preferredNodeVersion({ cwd })
   t.is(version, TEST_VERSION)
 })
+
+test('Ignore invalid version files', async (t) => {
+  const cwd = `${FIXTURES_DIR}/ignore_invalid`
+  const { version } = await preferredNodeVersion({ cwd })
+  t.is(version, TEST_VERSION)
+})
