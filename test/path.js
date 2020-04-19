@@ -28,6 +28,8 @@ if (platform !== 'win32') {
     const fixture = 'ignore_permissions/subdir'
     const nvmrcPath = `${FIXTURES_DIR}/${fixture}/.nvmrc`
 
+    // We must change the permissions during the test only because `git`
+    // requires read permissions to `git commit`
     const { mode } = await fs.stat(nvmrcPath)
     await fs.chmod(nvmrcPath, 0)
 

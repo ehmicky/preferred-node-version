@@ -1,5 +1,6 @@
-import { homedir } from 'os'
+import { homedir as getHomeDir } from 'os'
 import { normalize, dirname } from 'path'
+import { env } from 'process'
 
 // Retrieve list of directories to search:
 //   - current directory
@@ -9,11 +10,14 @@ export const getSearchDirs = function (cwd) {
   const cwdA = normalize(cwd)
   const parentDirs = getParentDirs(cwdA)
 
-  if (parentDirs.includes(HOME_DIR)) {
+  // For tests only
+  const homeDir = env.TEST_HOME_DIR === undefined ? HOME_DIR : env.TEST_HOME_DIR
+
+  if (parentDirs.includes(homeDir)) {
     return parentDirs
   }
 
-  return [...parentDirs, HOME_DIR]
+  return [...parentDirs, homeDir]
 }
 
 const getParentDirs = function (dir) {
@@ -22,4 +26,4 @@ const getParentDirs = function (dir) {
   return [dir, ...parentDirs]
 }
 
-const HOME_DIR = homedir()
+const HOME_DIR = getHomeDir()
