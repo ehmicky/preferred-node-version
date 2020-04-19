@@ -16,6 +16,10 @@ test('Resolves version ranges', async (t) => {
   t.is(version, RESOLVED_VERSION_RANGE)
 })
 
+test('Validates versions', async (t) => {
+  await t.throwsAsync(runFixture('invalid_version'))
+})
+
 test.serial('Returns an empty object if nothing was found', async (t) => {
   setHomeDir('/')
 
