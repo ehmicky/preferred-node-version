@@ -25,10 +25,6 @@ test('Resolves version ranges', async (t) => {
   t.is(version, RESOLVED_VERSION_RANGE)
 })
 
-test('Validates versions', async (t) => {
-  await t.throwsAsync(runFixture('invalid_version'))
-})
-
 test('Returns information about the resolution', async (t) => {
   const { filePath, envVariable, rawVersion, version } = await runFixture(
     'version_range',
