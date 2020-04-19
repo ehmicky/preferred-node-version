@@ -10,6 +10,7 @@ import { TEST_VERSION } from './helpers/versions.js'
 
 each(
   [
+    { name: 'DEFAULT_NODE_VERSION', value: TEST_VERSION },
     { name: 'NODIST_NODE_VERSION', value: TEST_VERSION },
     { name: 'NODE_VERSION', value: TEST_VERSION },
   ],

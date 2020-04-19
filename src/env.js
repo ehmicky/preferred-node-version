@@ -19,6 +19,8 @@ const ENVIRONMENT_VARIABLES = [
   'NODIST_NODE_VERSION',
   // Netlify
   'NODE_VERSION',
+  // nve-specific. Undocumented.
+  'DEFAULT_NODE_VERSION',
 ]
 
 const isDefined = function (envVariable) {
