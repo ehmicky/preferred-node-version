@@ -10,13 +10,14 @@ export const getOpts = function (opts = {}) {
   const optsA = filterObj(opts, isDefined)
   const optsB = { ...DEFAULT_OPTS(), ...optsA }
 
-  const { cwd, fetch, mirror } = optsB
+  const { cwd, global: globalOpt, fetch, mirror } = optsB
   const nodeVersionAliasOpts = { fetch, mirror }
-  return { cwd, nodeVersionAliasOpts }
+  return { cwd, globalOpt, nodeVersionAliasOpts }
 }
 
 const DEFAULT_OPTS = () => ({
   cwd: getCwd(),
+  global: false,
 })
 
 const EXAMPLE_OPTS = () => ({

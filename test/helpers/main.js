@@ -5,9 +5,9 @@ import preferredNodeVersion from '../../src/main.js'
 export const FIXTURES_DIR = `${__dirname}/fixtures`
 
 // Run the main function against a fixture directory
-export const runFixture = function (fixture) {
+export const runFixture = function (fixture, opts) {
   const cwd = `${FIXTURES_DIR}/${fixture}`
-  return preferredNodeVersion({ cwd })
+  return preferredNodeVersion({ ...opts, cwd })
 }
 
 // Tests should not rely on the real machine's home directory since it is

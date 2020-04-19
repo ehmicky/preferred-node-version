@@ -100,6 +100,16 @@ _Default_: `process.cwd()`
 
 Start looking for a Node.js version file from this directory.
 
+#### global
+
+_Type_: `boolean`\
+_Default_: `false`
+
+If `true`, find the global Node.js version instead:
+
+- use only the home directory and environment variables
+- ignore the current directory and parent directories
+
 #### mirror
 
 _Type_: `string`\

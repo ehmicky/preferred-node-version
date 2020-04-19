@@ -6,12 +6,17 @@ import { env } from 'process'
 //   - current directory
 //   - any parent directory
 //   - home directory
-export const getSearchDirs = function (cwd) {
-  const cwdA = normalize(cwd)
-  const parentDirs = getParentDirs(cwdA)
-
+// If `global` option is `true`, only home directory is searched
+export const getSearchDirs = function ({ cwd, globalOpt }) {
   // For tests only
   const homeDir = env.TEST_HOME_DIR === undefined ? HOME_DIR : env.TEST_HOME_DIR
+
+  if (globalOpt) {
+    return [homeDir]
+  }
+
+  const cwdA = normalize(cwd)
+  const parentDirs = getParentDirs(cwdA)
 
   if (parentDirs.includes(homeDir)) {
     return parentDirs
