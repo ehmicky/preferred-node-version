@@ -59,12 +59,6 @@ _Type_: `string`
 
 Full Node.js version. For example `12.16.2`
 
-#### versionRange
-
-_Type_: `string`
-
-Node.js version range. For example `12` or `12.16.2`
-
 #### rawVersion
 
 _Type_: `string`

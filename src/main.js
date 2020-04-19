@@ -1,12 +1,11 @@
-import normalizeNodeVersion from 'normalize-node-version'
+import nodeVersionAlias from 'node-version-alias'
 
-import { nodeVersionAlias } from './alias.js'
 import { getError } from './error.js'
 import { findVersion } from './find.js'
 import { getOpts } from './options.js'
 
 export const preferredNodeVersion = async function (opts) {
-  const { cwd, normalizeOpts, allNodeOpts } = getOpts(opts)
+  const { cwd, nodeVersionAliasOpts } = getOpts(opts)
   const { filePath, envVariable, rawVersion } = await findVersion(cwd)
 
   if (rawVersion === undefined) {
@@ -14,9 +13,8 @@ export const preferredNodeVersion = async function (opts) {
   }
 
   try {
-    const versionRange = await nodeVersionAlias(rawVersion, allNodeOpts)
-    const version = await normalizeNodeVersion(versionRange, normalizeOpts)
-    return { filePath, envVariable, rawVersion, versionRange, version }
+    const version = await nodeVersionAlias(rawVersion, nodeVersionAliasOpts)
+    return { filePath, envVariable, rawVersion, version }
   } catch (error) {
     throw getError(error, filePath, envVariable)
   }

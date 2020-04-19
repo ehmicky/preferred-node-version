@@ -11,9 +11,8 @@ export const getOpts = function (opts = {}) {
   const optsB = { ...DEFAULT_OPTS(), ...optsA }
 
   const { cwd, fetch, mirror } = optsB
-  const normalizeOpts = { cwd, fetch, mirror }
-  const allNodeOpts = { fetch, mirror }
-  return { cwd, normalizeOpts, allNodeOpts }
+  const nodeVersionAliasOpts = { fetch, mirror }
+  return { cwd, nodeVersionAliasOpts }
 }
 
 const DEFAULT_OPTS = () => ({
