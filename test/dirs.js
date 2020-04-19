@@ -7,18 +7,16 @@ import { each } from 'test-each'
 
 import preferredNodeVersion from '../src/main.js'
 
-import { FIXTURES_DIR } from './helpers/main.js'
+import { runFixture } from './helpers/main.js'
 import { TEST_VERSION } from './helpers/versions.js'
 
 test('Look for version files in current directory', async (t) => {
-  const cwd = `${FIXTURES_DIR}/nvmrc`
-  const { version } = await preferredNodeVersion({ cwd })
+  const { version } = await runFixture('nvmrc')
   t.is(version, TEST_VERSION)
 })
 
 test('Look for version files in parent directories', async (t) => {
-  const cwd = `${FIXTURES_DIR}/deep/subdir/subdir`
-  const { version } = await preferredNodeVersion({ cwd })
+  const { version } = await runFixture('deep/subdir/subdir')
   t.is(version, TEST_VERSION)
 })
 

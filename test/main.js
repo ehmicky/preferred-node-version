@@ -5,13 +5,12 @@ import { each } from 'test-each'
 
 import preferredNodeVersion from '../src/main.js'
 
-import { FIXTURES_DIR } from './helpers/main.js'
+import { runFixture, FIXTURES_DIR } from './helpers/main.js'
 import { TEST_VERSION } from './helpers/versions.js'
 
 each(['naverc', 'node-version', 'nvmrc'], ({ title }, fixture) => {
   test(`Resolve aliases | ${title}`, async (t) => {
-    const cwd = `${FIXTURES_DIR}/${fixture}`
-    const { version } = await preferredNodeVersion({ cwd })
+    const { version } = await runFixture(fixture)
     t.is(version, TEST_VERSION)
   })
 })
