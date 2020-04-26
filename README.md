@@ -9,7 +9,8 @@ Get the preferred Node.js version of a user or project.
 
 This looks for any [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
 [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
-in the current directory, parent directories or home directory.
+in the current directory, parent directories or home directory. `nvm` aliases
+are resolved to regular `"major.minor.patch"` version strings.
 
 This also looks for any
 [`.node-version`](https://github.com/jasongin/nvs#automatic-switching-per-directory),
@@ -20,7 +21,7 @@ This also looks for any
 [`NODIST_NODE_VERSION`](https://github.com/nullivex/nodist#scope-precedence)
 environment variable.
 
-# Example
+# Examples
 
 <!-- Remove 'eslint-skip' once estree supports top-level await -->
 <!-- eslint-skip -->
@@ -30,6 +31,9 @@ const preferredNodeVersion = require('preferred-node-version')
 
 const { version } = await preferredNodeVersion()
 console.log(version) // 12.10.0
+
+// Search only the home directory and environment variables
+const { version } = await preferredNodeVersion({ global: true })
 
 // Start looking for a Node.js version file from this directory instead
 const { version } = await preferredNodeVersion({ cwd: '/path/to/cwd' })
