@@ -31,15 +31,8 @@ const preferredNodeVersion = require('preferred-node-version')
 const { version } = await preferredNodeVersion()
 console.log(version) // 12.10.0
 
-// Allowed options
-await preferredNodeVersion({
-  // Start looking for a Node.js version file from this directory
-  cwd: '/path/to/cwd',
-  // Use a mirror for Node.js binaries
-  mirror: 'https://npm.taobao.org/mirrors/node',
-  // Do not cache the list of available Node.js versions
-  fetch: true,
-})
+// Start looking for a Node.js version file from this directory instead
+const { version } = await preferredNodeVersion({ cwd: '/path/to/cwd' })
 ```
 
 # Install
