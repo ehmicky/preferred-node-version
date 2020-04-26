@@ -11,8 +11,8 @@ This looks for any [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
 [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
 in the current directory, parent directories or home directory.
 
-`nvm` aliases (like `current` or `lts/erbium`) and version ranges (like `12`)
-are resolved to regular `"major.minor.patch"` version strings.
+`nvm` aliases (like `current` or `lts/erbium`) and version ranges (like `12` or
+`>=12`) are resolved to regular `"major.minor.patch"` version strings.
 
 This also looks for any
 [`.node-version`](https://github.com/jasongin/nvs#automatic-switching-per-directory),
@@ -31,6 +31,7 @@ environment variable.
 ```js
 const preferredNodeVersion = require('preferred-node-version')
 
+// Look for any `.nvmrc` or `package.json` (`engines.node` field)
 const { version } = await preferredNodeVersion()
 console.log(version) // 12.10.0
 
