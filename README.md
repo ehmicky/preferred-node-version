@@ -9,7 +9,9 @@ Get the preferred Node.js version of a user or project.
 
 This looks for any [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
 [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
-in the current directory, parent directories or home directory. `nvm` aliases
+in the current directory, parent directories or home directory.
+
+`nvm` aliases (like `current` or `lts/erbium`) and version ranges (like `12`)
 are resolved to regular `"major.minor.patch"` version strings.
 
 This also looks for any
