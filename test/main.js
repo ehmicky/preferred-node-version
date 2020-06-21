@@ -32,7 +32,7 @@ test('Returns information about the resolution', async (t) => {
     'version_range',
   )
   t.is(filePath, join(FIXTURES_DIR, 'version_range', '.nvmrc'))
-  t.is(envVariable)
+  t.true(envVariable === undefined)
   t.is(rawVersion, VERSION_RANGE)
   t.is(version, RESOLVED_VERSION_RANGE)
 })

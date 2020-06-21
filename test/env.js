@@ -29,7 +29,7 @@ each(
             rawVersion,
             version,
           } = await preferredNodeVersion({ cwd: '/' })
-          t.is(filePath)
+          t.true(filePath === undefined)
           t.is(envVariable, name)
           t.is(rawVersion, TEST_VERSION)
           t.is(version, TEST_VERSION)
@@ -50,7 +50,7 @@ test.serial('Ignores empty environment variables', async (t) => {
 
   try {
     const { version } = await preferredNodeVersion({ cwd: '/' })
-    t.is(version)
+    t.true(version === undefined)
   } finally {
     // eslint-disable-next-line fp/no-delete
     delete env.NODE_VERSION
