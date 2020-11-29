@@ -1,7 +1,7 @@
 // Add more contexts to errors
 export const getError = function (error, filePath, envVariable) {
   const errorPrefix = getErrorPrefix(filePath, envVariable)
-  // eslint-disable-next-line no-param-reassign, fp/no-mutation
+  // eslint-disable-next-line no-param-reassign
   error.message = `In ${errorPrefix}: ${error.message}`
   return error
 }
