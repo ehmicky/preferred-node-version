@@ -23,12 +23,8 @@ each(
         env[name] = value
 
         try {
-          const {
-            filePath,
-            envVariable,
-            rawVersion,
-            version,
-          } = await preferredNodeVersion({ cwd: '/' })
+          const { filePath, envVariable, rawVersion, version } =
+            await preferredNodeVersion({ cwd: '/' })
           t.true(filePath === undefined)
           t.is(envVariable, name)
           t.is(rawVersion, TEST_VERSION)
