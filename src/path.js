@@ -15,8 +15,7 @@ export const getFilePath = function ({ cwd, globalOpt }) {
 
 const getSearchFiles = function ({ cwd, globalOpt }) {
   const searchDirs = getSearchDirs({ cwd, globalOpt })
-  // TODO: replace with Array.flatMap() after dropping support for Node 10
-  const searchFiles = [].concat(...searchDirs.map(addNodeVersionFiles))
+  const searchFiles = searchDirs.flatMap(addNodeVersionFiles)
   return searchFiles
 }
 
