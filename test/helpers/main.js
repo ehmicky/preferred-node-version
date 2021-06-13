@@ -1,9 +1,10 @@
 import { env } from 'process'
+import { fileURLToPath } from 'url'
 
 // eslint-disable-next-line node/no-missing-import, import/no-unresolved
 import preferredNodeVersion from 'preferred-node-version'
 
-export const FIXTURES_DIR = `${__dirname}/fixtures`
+export const FIXTURES_DIR = fileURLToPath(new URL('fixtures', import.meta.url))
 
 // Run the main function against a fixture directory
 export const runFixture = function (fixture, opts) {
