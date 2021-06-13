@@ -28,7 +28,7 @@ environment variable.
 <!-- eslint-skip -->
 
 ```js
-const preferredNodeVersion = require('preferred-node-version')
+import preferredNodeVersion from 'preferred-node-version'
 
 // Look for any `.nvmrc` or `package.json` (`engines.node` field)
 const { version } = await preferredNodeVersion()
