@@ -1,8 +1,8 @@
 import { env } from 'process'
 
 import test from 'ava'
-
-import preferredNodeVersion from '../src/main.js'
+// eslint-disable-next-line node/no-missing-import, import/no-unresolved
+import preferredNodeVersion from 'preferred-node-version'
 
 import { runFixture, setEmptyHomeDir, unsetHomeDir } from './helpers/main.js'
 

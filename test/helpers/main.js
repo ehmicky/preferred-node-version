@@ -1,6 +1,7 @@
 import { env } from 'process'
 
-import preferredNodeVersion from '../../src/main.js'
+// eslint-disable-next-line node/no-missing-import, import/no-unresolved
+import preferredNodeVersion from 'preferred-node-version'
 
 export const FIXTURES_DIR = `${__dirname}/fixtures`
 

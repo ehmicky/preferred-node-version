@@ -1,9 +1,9 @@
 import { env } from 'process'
 
 import test from 'ava'
+// eslint-disable-next-line node/no-missing-import, import/no-unresolved
+import preferredNodeVersion from 'preferred-node-version'
 import { each } from 'test-each'
-
-import preferredNodeVersion from '../src/main.js'
 
 import { setEmptyHomeDir, unsetHomeDir } from './helpers/main.js'
 import { TEST_VERSION } from './helpers/versions.js'
