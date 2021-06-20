@@ -50,7 +50,7 @@
     "jest-validate": "^27.0.2",
     "node-version-alias": "^1.0.1",
     "p-locate": "^5.0.0",
-    "path-type": "^4.0.0"
+    "path-type": "^5.0.0"
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^1.0.30",
