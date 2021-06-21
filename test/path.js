@@ -2,7 +2,6 @@ import { promises as fs } from 'fs'
 import { platform, cwd as getCwd, chdir } from 'process'
 
 import test from 'ava'
-// eslint-disable-next-line node/no-missing-import, import/no-unresolved
 import preferredNodeVersion from 'preferred-node-version'
 
 import { runFixture, FIXTURES_DIR } from './helpers/main.js'

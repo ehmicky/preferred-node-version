@@ -2,7 +2,6 @@ import { join } from 'path'
 
 import test from 'ava'
 import isPlainObj from 'is-plain-obj'
-// eslint-disable-next-line node/no-missing-import, import/no-unresolved
 import preferredNodeVersion from 'preferred-node-version'
 
 import {

@@ -1,7 +1,6 @@
 import { env } from 'process'
 
 import test from 'ava'
-// eslint-disable-next-line node/no-missing-import, import/no-unresolved
 import preferredNodeVersion from 'preferred-node-version'
 import { each } from 'test-each'
 
