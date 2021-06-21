@@ -10,11 +10,6 @@
   "scripts": {
     "test": "gulp test"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "gulp -LL check --full"
-    }
-  },
   "description": "Get the preferred Node.js version of a project or user",
   "keywords": [
     "nodejs",
