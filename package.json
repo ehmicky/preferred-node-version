@@ -46,7 +46,7 @@
     "test": "test"
   },
   "dependencies": {
-    "filter-obj": "^2.0.1",
+    "filter-obj": "^3.0.0",
     "is-plain-obj": "^4.0.0",
     "jest-validate": "^27.0.6",
     "node-version-alias": "^2.0.0",
