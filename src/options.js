@@ -1,7 +1,7 @@
 import { cwd as getCwd } from 'process'
 
 import filterObj from 'filter-obj'
-import { validate } from 'jest-validate'
+import { validate, multipleValidOptions } from 'jest-validate'
 
 // Normalize options and assign default values
 export const getOpts = function (opts = {}) {
@@ -16,12 +16,13 @@ export const getOpts = function (opts = {}) {
 }
 
 const DEFAULT_OPTS = () => ({
-  cwd: getCwd(),
+  cwd: '.',
   global: false,
 })
 
 const EXAMPLE_OPTS = () => ({
   ...DEFAULT_OPTS(),
+  cwd: multipleValidOptions(getCwd(), new URL('.', import.meta.url)),
   // Passed to `all-node-versions`
   fetch: true,
   // Passed to `fetch-node-website`

@@ -98,7 +98,7 @@ Name of the environment variable containing the version. For example
 
 #### cwd
 
-_Type_: `string`\
+_Type_: `string | URL`\
 _Default_: `process.cwd()`
 
 Start looking for a Node.js version file from this directory.
