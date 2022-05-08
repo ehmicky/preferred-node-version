@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs'
+import { writeFile, unlink } from 'fs/promises'
 
 import test from 'ava'
 import { each } from 'test-each'
@@ -39,12 +39,12 @@ each(
 // throws an error.
 test('Ignore invalid package.json', async (t) => {
   const packageJsonPath = `${FIXTURES_DIR}/package_invalid_json/subdir/package.json`
-  await fs.writeFile(packageJsonPath, '{"engines":{"node"},"test"}')
+  await writeFile(packageJsonPath, '{"engines":{"node"},"test"}')
 
   try {
     const { version } = await runFixture('package_invalid_json/subdir')
     t.is(version, TEST_VERSION)
   } finally {
-    await fs.unlink(packageJsonPath)
+    await unlink(packageJsonPath)
   }
 })

@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs'
+import { readFile } from 'fs/promises'
 import { basename } from 'path'
 
 import { loadNodeEnvRc } from './nodeenv.js'
@@ -22,7 +22,7 @@ export const loadVersionFile = async function (filePath) {
 // I/O errors are silently skipped
 const safeReadFile = async function (path) {
   try {
-    return await fs.readFile(path, 'utf8')
+    return await readFile(path, 'utf8')
   } catch {
     return ''
   }

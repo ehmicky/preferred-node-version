@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs'
+import { stat, chmod } from 'fs/promises'
 import { platform, cwd as getCwd, chdir } from 'process'
 
 import test from 'ava'
@@ -29,14 +29,14 @@ if (platform !== 'win32') {
 
     // We must change the permissions during the test only because `git`
     // requires read permissions to `git commit`
-    const { mode } = await fs.stat(nvmrcPath)
-    await fs.chmod(nvmrcPath, 0)
+    const { mode } = await stat(nvmrcPath)
+    await chmod(nvmrcPath, 0)
 
     try {
       const { version } = await runFixture(fixture)
       t.is(version, TEST_VERSION)
     } finally {
-      await fs.chmod(nvmrcPath, mode)
+      await chmod(nvmrcPath, mode)
     }
   })
 }
