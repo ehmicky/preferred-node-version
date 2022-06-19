@@ -24,21 +24,22 @@ environment variable.
 
 # Examples
 
-<!-- Remove 'eslint-skip' once estree supports top-level await -->
-<!-- eslint-skip -->
-
 ```js
 import preferredNodeVersion from 'preferred-node-version'
 
 // Look for any `.nvmrc` or `package.json` (`engines.node` field)
 const { version } = await preferredNodeVersion()
 console.log(version) // 12.10.0
+```
 
+```js
 // Search only the home directory and environment variables
-const { version } = await preferredNodeVersion({ global: true })
+await preferredNodeVersion({ global: true })
+```
 
+```js
 // Start looking for a Node.js version file from this directory instead
-const { version } = await preferredNodeVersion({ cwd: '/path/to/cwd' })
+await preferredNodeVersion({ cwd: '/path/to/cwd' })
 ```
 
 # Install
