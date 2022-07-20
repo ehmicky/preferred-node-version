@@ -1,14 +1,15 @@
-import preferredNodeVersion, {
-  Options,
-  PreferredNodeVersion,
-  SemverVersion,
-} from 'preferred-node-version'
 import {
   expectError,
   expectType,
   expectAssignable,
   expectNotAssignable,
 } from 'tsd'
+
+import preferredNodeVersion, {
+  Options,
+  PreferredNodeVersion,
+  SemverVersion,
+} from './main.js'
 
 const result = await preferredNodeVersion()
 
