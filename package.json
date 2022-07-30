@@ -36,7 +36,7 @@
     "bash"
   ],
   "license": "Apache-2.0",
-  "homepage": "https://git.io/JvjBb",
+  "homepage": "https://www.github.com/ehmicky/preferred-node-version",
   "repository": "ehmicky/preferred-node-version",
   "bugs": {
     "url": "https://github.com/ehmicky/preferred-node-version/issues"
