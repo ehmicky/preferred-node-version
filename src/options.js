@@ -1,32 +1,12 @@
-import { excludeKeys } from 'filter-obj'
-import { validate, multipleValidOptions } from 'jest-validate'
+import isPlainObj from 'is-plain-obj'
 
 // Normalize options and assign default values
 export const getOpts = function (opts = {}) {
-  validate(opts, { exampleConfig: EXAMPLE_OPTS })
+  if (!isPlainObj(opts)) {
+    throw new TypeError(`Options must be a plain object: ${opts}`)
+  }
 
-  const optsA = excludeKeys(opts, isUndefined)
-  const optsB = { ...DEFAULT_OPTS, ...optsA }
-
-  const { cwd, global: globalOpt, fetch: fetchOpt, mirror } = optsB
+  const { cwd = '.', global: globalOpt = false, fetch: fetchOpt, mirror } = opts
   const nodeVersionAliasOpts = { fetch: fetchOpt, mirror }
   return { cwd, globalOpt, nodeVersionAliasOpts }
-}
-
-const DEFAULT_OPTS = {
-  cwd: '.',
-  global: false,
-}
-
-const EXAMPLE_OPTS = {
-  ...DEFAULT_OPTS,
-  cwd: multipleValidOptions('.', new URL('.', import.meta.url)),
-  // Passed to `all-node-versions`
-  fetch: true,
-  // Passed to `fetch-node-website`
-  mirror: 'https://nodejs.org/dist',
-}
-
-const isUndefined = function (key, value) {
-  return value === undefined
 }

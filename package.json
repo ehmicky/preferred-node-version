@@ -46,9 +46,7 @@
     "test": "test"
   },
   "dependencies": {
-    "filter-obj": "^5.1.0",
     "is-plain-obj": "^4.1.0",
-    "jest-validate": "^29.0.1",
     "node-version-alias": "^3.3.0",
     "p-locate": "^6.0.0",
     "path-type": "^5.0.0"
