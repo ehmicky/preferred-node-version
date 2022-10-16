@@ -8,10 +8,10 @@ import { getOpts } from './options.js'
 // `.nvmrc` (or similar files) or `package.json` `engines.node`.
 export default async function preferredNodeVersion(opts) {
   const { cwd, globalOpt, nodeVersionAliasOpts } = getOpts(opts)
-  const { filePath, envVariable, rawVersion } = await findVersion({
+  const { filePath, envVariable, rawVersion } = await findVersion(
     cwd,
     globalOpt,
-  })
+  )
 
   if (rawVersion === undefined) {
     return {}

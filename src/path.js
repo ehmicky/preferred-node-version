@@ -8,13 +8,13 @@ import { loadVersionFile, NODE_VERSION_FILES } from './load.js'
 
 // Find any file indicating the current directory's Node.js version
 // Use p-locate instead of find-up for performance (more parallelism)
-export const getFilePath = function ({ cwd, globalOpt }) {
-  const searchFiles = getSearchFiles({ cwd, globalOpt })
+export const getFilePath = function (cwd, globalOpt) {
+  const searchFiles = getSearchFiles(cwd, globalOpt)
   return pLocate(searchFiles, isNodeVersionFile)
 }
 
-const getSearchFiles = function ({ cwd, globalOpt }) {
-  const searchDirs = getSearchDirs({ cwd, globalOpt })
+const getSearchFiles = function (cwd, globalOpt) {
+  const searchDirs = getSearchDirs(cwd, globalOpt)
   const searchFiles = searchDirs.flatMap(addNodeVersionFiles)
   return searchFiles
 }

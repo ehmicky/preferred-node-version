@@ -1,14 +1,13 @@
 import { homedir as getHomeDir } from 'os'
-import { normalize, dirname } from 'path'
+import { dirname } from 'path'
 import { env } from 'process'
-import { fileURLToPath } from 'url'
 
 // Retrieve list of directories to search:
 //   - current directory
 //   - any parent directory
 //   - home directory
 // If `global` option is `true`, only home directory is searched
-export const getSearchDirs = function ({ cwd, globalOpt }) {
+export const getSearchDirs = function (cwd, globalOpt) {
   // For tests only
   const homeDir = env.TEST_HOME_DIR === undefined ? HOME_DIR : env.TEST_HOME_DIR
 
@@ -16,18 +15,13 @@ export const getSearchDirs = function ({ cwd, globalOpt }) {
     return [homeDir]
   }
 
-  const cwdA = normalizeCwd(cwd)
-  const parentDirs = getParentDirs(cwdA)
+  const parentDirs = getParentDirs(cwd)
 
   if (parentDirs.includes(homeDir)) {
     return parentDirs
   }
 
   return [...parentDirs, homeDir]
-}
-
-const normalizeCwd = function (cwd) {
-  return cwd instanceof URL ? fileURLToPath(cwd) : normalize(cwd)
 }
 
 const getParentDirs = function (dir) {
