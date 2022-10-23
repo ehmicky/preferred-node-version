@@ -52,7 +52,7 @@
     "path-type": "^5.0.0"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^1.0.94",
+    "@ehmicky/dev-tasks": "^1.0.95",
     "@types/node": "^18.0.0",
     "test-each": "^5.4.0"
   },
