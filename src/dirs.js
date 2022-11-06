@@ -1,6 +1,6 @@
-import { homedir as getHomeDir } from 'os'
-import { dirname } from 'path'
-import { env } from 'process'
+import { homedir as getHomeDir } from 'node:os'
+import { dirname } from 'node:path'
+import { env } from 'node:process'
 
 // Retrieve list of directories to search:
 //   - current directory

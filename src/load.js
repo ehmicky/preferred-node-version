@@ -1,5 +1,5 @@
-import { readFile } from 'fs/promises'
-import { basename } from 'path'
+import { readFile } from 'node:fs/promises'
+import { basename } from 'node:path'
 
 import { loadNodeEnvRc } from './nodeenv.js'
 import { loadPackageJson } from './package.js'

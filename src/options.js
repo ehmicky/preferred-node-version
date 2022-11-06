@@ -1,5 +1,5 @@
-import { normalize } from 'path'
-import { fileURLToPath } from 'url'
+import { normalize } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import isPlainObj from 'is-plain-obj'
 

@@ -1,5 +1,5 @@
-import { env } from 'process'
-import { fileURLToPath } from 'url'
+import { env } from 'node:process'
+import { fileURLToPath } from 'node:url'
 
 import preferredNodeVersion from 'preferred-node-version'
 

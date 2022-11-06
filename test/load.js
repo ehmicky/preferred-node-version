@@ -1,4 +1,4 @@
-import { writeFile, unlink } from 'fs/promises'
+import { writeFile, unlink } from 'node:fs/promises'
 
 import test from 'ava'
 import { each } from 'test-each'

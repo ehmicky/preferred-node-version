@@ -1,5 +1,5 @@
-import { stat, chmod } from 'fs/promises'
-import { platform, cwd as getCwd, chdir } from 'process'
+import { stat, chmod } from 'node:fs/promises'
+import { platform, cwd as getCwd, chdir } from 'node:process'
 
 import test from 'ava'
 import preferredNodeVersion from 'preferred-node-version'

@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 
 import pLocate from 'p-locate'
 import { isFile } from 'path-type'

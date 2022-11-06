@@ -1,4 +1,4 @@
-import { env } from 'process'
+import { env } from 'node:process'
 
 // Retrieve Node.js version stored in environment variable.
 // Has less priority than version files because harder to localize to a specific
