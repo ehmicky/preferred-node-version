@@ -9,7 +9,7 @@ import preferredNodeVersion, {
   Options,
   PreferredNodeVersion,
   SemverVersion,
-} from './main.js'
+} from 'preferred-node-version'
 
 const result = await preferredNodeVersion()
 
