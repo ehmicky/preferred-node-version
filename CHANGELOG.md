@@ -1,3 +1,9 @@
+# 3.6.0
+
+## Documentation
+
+- Clarify order in which files and environment variables are searched
+
 # 3.5.0
 
 ## Features
