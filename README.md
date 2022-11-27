@@ -6,7 +6,7 @@
 
 Get the preferred Node.js version of a user or project.
 
-This looks for (in priority order):
+This looks for (from highest to lowest priority):
 
 - Any [`.n-node-version`](https://github.com/tj/n#specifying-node-versions),
   [`.naverc`](https://github.com/isaacs/nave#automagical),
@@ -14,7 +14,7 @@ This looks for (in priority order):
   [`.nodeenvrc`](https://github.com/ekalinin/nodeenv#configuration)
   [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
   [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
-  in the current directory, any parent directory, or home directory
+  in the current directory, parent directories, or home directory
 - Any
   [`NODE_VERSION`](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript),
   [`NODIST_NODE_VERSION`](https://github.com/nullivex/nodist#scope-precedence)
