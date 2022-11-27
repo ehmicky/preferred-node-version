@@ -6,21 +6,22 @@
 
 Get the preferred Node.js version of a user or project.
 
-This looks for any [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
-[`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
-in the current directory, parent directories or home directory.
+This looks for (in priority order):
+
+- Any [`.n-node-version`](https://github.com/tj/n#specifying-node-versions),
+  [`.naverc`](https://github.com/isaacs/nave#automagical),
+  [`.node-version`](https://github.com/jasongin/nvs#automatic-switching-per-directory),
+  [`.nodeenvrc`](https://github.com/ekalinin/nodeenv#configuration)
+  [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
+  [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
+  in the current directory, any parent directory, or home directory
+- Any
+  [`NODE_VERSION`](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript),
+  [`NODIST_NODE_VERSION`](https://github.com/nullivex/nodist#scope-precedence)
+  environment variable
 
 `nvm` aliases (like `current` or `lts/erbium`) and version ranges (like `12` or
 `>=12`) are resolved to regular `"major.minor.patch"` version strings.
-
-This also looks for any
-[`.node-version`](https://github.com/jasongin/nvs#automatic-switching-per-directory),
-[`.n-node-version`](https://github.com/tj/n#specifying-node-versions),
-[`.naverc`](https://github.com/isaacs/nave#automagical),
-[`.nodeenvrc`](https://github.com/ekalinin/nodeenv#configuration) file or
-[`NODE_VERSION`](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript),
-[`NODIST_NODE_VERSION`](https://github.com/nullivex/nodist#scope-precedence)
-environment variable.
 
 # Examples
 

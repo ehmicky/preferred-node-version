@@ -35,6 +35,11 @@ each(
   },
 )
 
+test('Load version files in order', async (t) => {
+  const { version } = await runFixture('order')
+  t.is(version, TEST_VERSION)
+})
+
 // We need to generate invalid `package.json` dynamically. Otherwise ESLint
 // throws an error.
 test('Ignore invalid package.json', async (t) => {
