@@ -4,8 +4,8 @@ import { platform, cwd as getCwd, chdir } from 'node:process'
 import test from 'ava'
 import preferredNodeVersion from 'preferred-node-version'
 
-import { runFixture, FIXTURES_DIR } from './helpers/main.js'
-import { TEST_VERSION } from './helpers/versions.js'
+import { runFixture, FIXTURES_DIR } from './helpers/main.test.js'
+import { TEST_VERSION } from './helpers/versions.test.js'
 
 test('Prioritize closer directories', async (t) => {
   const { version } = await runFixture('priority/subdir')

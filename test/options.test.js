@@ -2,8 +2,8 @@ import test from 'ava'
 import preferredNodeVersion from 'preferred-node-version'
 import { each } from 'test-each'
 
-import { FIXTURES_DIR_URL, FIXTURES_DIR } from './helpers/main.js'
-import { RESOLVED_VERSION_RANGE } from './helpers/versions.js'
+import { FIXTURES_DIR_URL, FIXTURES_DIR } from './helpers/main.test.js'
+import { RESOLVED_VERSION_RANGE } from './helpers/versions.test.js'
 
 each([true, { fetch: 0 }, { cwd: true }], ({ title }, options) => {
   test(`Validates options | ${title}`, async (t) => {

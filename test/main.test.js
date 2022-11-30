@@ -9,12 +9,12 @@ import {
   FIXTURES_DIR,
   setEmptyHomeDir,
   unsetHomeDir,
-} from './helpers/main.js'
+} from './helpers/main.test.js'
 import {
   ALIAS_VERSION,
   VERSION_RANGE,
   RESOLVED_VERSION_RANGE,
-} from './helpers/versions.js'
+} from './helpers/versions.test.js'
 
 test('Resolves aliases', async (t) => {
   const { version } = await runFixture('alias')

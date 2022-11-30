@@ -3,7 +3,11 @@ import { env } from 'node:process'
 import test from 'ava'
 import preferredNodeVersion from 'preferred-node-version'
 
-import { runFixture, setEmptyHomeDir, unsetHomeDir } from './helpers/main.js'
+import {
+  runFixture,
+  setEmptyHomeDir,
+  unsetHomeDir,
+} from './helpers/main.test.js'
 
 test('Validates versions in files', async (t) => {
   await t.throwsAsync(runFixture('invalid_version'), { message: /file/u })

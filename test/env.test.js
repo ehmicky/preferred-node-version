@@ -4,8 +4,8 @@ import test from 'ava'
 import preferredNodeVersion from 'preferred-node-version'
 import { each } from 'test-each'
 
-import { setEmptyHomeDir, unsetHomeDir } from './helpers/main.js'
-import { TEST_VERSION } from './helpers/versions.js'
+import { setEmptyHomeDir, unsetHomeDir } from './helpers/main.test.js'
+import { TEST_VERSION } from './helpers/versions.test.js'
 
 each(
   [
