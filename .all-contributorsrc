@@ -32,8 +32,19 @@
         "test",
         "ideas"
       ]
+    },
+    {
+      "login": "shuhrat",
+      "name": "Шухрат Шадмонов",
+      "avatar_url": "https://avatars.githubusercontent.com/u/104213?v=4",
+      "profile": "https://github.com/shuhrat",
+      "contributions": [
+        "ideas",
+        "question"
+      ]
     }
   ],
   "contributorsPerLine": 7,
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
