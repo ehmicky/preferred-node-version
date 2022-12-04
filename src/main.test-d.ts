@@ -21,21 +21,21 @@ expectAssignable<Options>({ cwd: new URL('file://example.com') })
 // @ts-expect-error
 await preferredNodeVersion({ cwd: true })
 
-preferredNodeVersion({ global: true })
+await preferredNodeVersion({ global: true })
 expectAssignable<Options>({ global: true })
 // @ts-expect-error
-preferredNodeVersion({ global: 'true' })
+await preferredNodeVersion({ global: 'true' })
 
 await preferredNodeVersion({ mirror: 'https://example.com' })
 expectAssignable<Options>({ mirror: 'https://example.com' })
 // @ts-expect-error
 await preferredNodeVersion({ mirror: true })
 
-preferredNodeVersion({ fetch: true })
-preferredNodeVersion({ fetch: undefined })
+await preferredNodeVersion({ fetch: true })
+await preferredNodeVersion({ fetch: undefined })
 expectAssignable<Options>({ fetch: true })
 // @ts-expect-error
-preferredNodeVersion({ fetch: 'true' })
+await preferredNodeVersion({ fetch: 'true' })
 
 expectAssignable<SemverVersion>('1.2.3')
 expectAssignable<SemverVersion>('0.0.1')
