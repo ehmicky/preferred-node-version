@@ -1,4 +1,4 @@
-import {
+import type {
   SemverVersion,
   Options as NodeVersionAliasOptions,
 } from 'node-version-alias'

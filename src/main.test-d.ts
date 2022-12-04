@@ -1,9 +1,9 @@
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 
 import preferredNodeVersion, {
-  Options,
-  PreferredNodeVersion,
-  SemverVersion,
+  type Options,
+  type PreferredNodeVersion,
+  type SemverVersion,
 } from 'preferred-node-version'
 
 const result = await preferredNodeVersion()

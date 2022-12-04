@@ -2,7 +2,6 @@ import { join } from 'node:path'
 
 import test from 'ava'
 import isPlainObj from 'is-plain-obj'
-import preferredNodeVersion from 'preferred-node-version'
 
 import {
   runFixture,
@@ -15,6 +14,8 @@ import {
   VERSION_RANGE,
   RESOLVED_VERSION_RANGE,
 } from './helpers/versions.test.js'
+
+import preferredNodeVersion from 'preferred-node-version'
 
 test('Resolves aliases', async (t) => {
   const { version } = await runFixture('alias')
