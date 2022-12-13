@@ -3,7 +3,7 @@ import { loadVersionFile } from './load.js'
 import { getFilePath } from './path.js'
 
 // Retrieve Node.js version before normalization
-export const findVersion = async function (cwd, globalOpt) {
+export const findVersion = async (cwd, globalOpt) => {
   const { filePath, rawVersion } = await getVersionFile(cwd, globalOpt)
 
   if (rawVersion !== undefined) {
@@ -14,7 +14,7 @@ export const findVersion = async function (cwd, globalOpt) {
 }
 
 // Retrieve Node.js version file
-const getVersionFile = async function (cwd, globalOpt) {
+const getVersionFile = async (cwd, globalOpt) => {
   const filePath = await getFilePath(cwd, globalOpt)
 
   if (filePath === undefined) {

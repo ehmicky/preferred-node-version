@@ -5,7 +5,7 @@ import { loadNodeEnvRc } from './nodeenv.js'
 import { loadPackageJson } from './package.js'
 
 // Load Node.js version file
-export const loadVersionFile = async function (filePath) {
+export const loadVersionFile = async (filePath) => {
   const content = await safeReadFile(filePath)
   const contentA = content.trim()
 
@@ -20,7 +20,7 @@ export const loadVersionFile = async function (filePath) {
 }
 
 // I/O errors are silently skipped
-const safeReadFile = async function (path) {
+const safeReadFile = async (path) => {
   try {
     return await readFile(path, 'utf8')
   } catch {
@@ -29,9 +29,7 @@ const safeReadFile = async function (path) {
 }
 
 // When whole version file content is the version itself
-const identity = function (content) {
-  return content
-}
+const identity = (content) => content
 
 // List of files indicating Node.js version.
 // Each file has its own way of locating the version.

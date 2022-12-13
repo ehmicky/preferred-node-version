@@ -6,7 +6,7 @@ import { getOpts } from './options.js'
 
 // Get the preferred Node.js version of a user or project by looking up its
 // `.nvmrc` (or similar files) or `package.json` `engines.node`.
-export default async function preferredNodeVersion(opts) {
+const preferredNodeVersion = async (opts) => {
   const { cwd, globalOpt, nodeVersionAliasOpts } = getOpts(opts)
   const { filePath, envVariable, rawVersion } = await findVersion(
     cwd,
@@ -24,3 +24,5 @@ export default async function preferredNodeVersion(opts) {
     throw getError(error, filePath, envVariable)
   }
 }
+
+export default preferredNodeVersion

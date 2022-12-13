@@ -3,7 +3,7 @@ import { env } from 'node:process'
 // Retrieve Node.js version stored in environment variable.
 // Has less priority than version files because harder to localize to a specific
 // project.
-export const getVersionEnvVariable = function () {
+export const getVersionEnvVariable = () => {
   const envVariable = ENVIRONMENT_VARIABLES.find(isDefined)
 
   if (envVariable === undefined) {
@@ -23,11 +23,9 @@ const ENVIRONMENT_VARIABLES = [
   'DEFAULT_NODE_VERSION',
 ]
 
-const isDefined = function (envVariable) {
+const isDefined = (envVariable) => {
   const rawVersion = getRawVersion(envVariable)
   return typeof rawVersion === 'string' && rawVersion.trim() !== ''
 }
 
-const getRawVersion = function (envVariable) {
-  return env[envVariable]
-}
+const getRawVersion = (envVariable) => env[envVariable]

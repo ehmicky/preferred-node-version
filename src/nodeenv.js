@@ -1,7 +1,7 @@
 // Load .nodeenvrc
 // The format is INI. However there are no well-maintained INI parsed in Node.js
 // so we instead do a hacky string search.
-export const loadNodeEnvRc = function (content) {
+export const loadNodeEnvRc = (content) => {
   const result = VERSION_REGEXP.exec(content)
 
   if (result === null) {
