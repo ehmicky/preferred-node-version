@@ -7,7 +7,6 @@ import { each } from 'test-each'
 import { setEmptyHomeDir, unsetHomeDir } from './helpers/main.test.js'
 import { TEST_VERSION } from './helpers/versions.test.js'
 
-
 each(
   [
     { name: 'DEFAULT_NODE_VERSION', value: TEST_VERSION },

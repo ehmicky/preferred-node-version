@@ -16,7 +16,6 @@ import {
   RESOLVED_VERSION_RANGE,
 } from './helpers/versions.test.js'
 
-
 test('Resolves aliases', async (t) => {
   const { version } = await runFixture('alias')
   t.is(version, ALIAS_VERSION)

@@ -9,7 +9,6 @@ import {
   unsetHomeDir,
 } from './helpers/main.test.js'
 
-
 test('Validates versions in files', async (t) => {
   await t.throwsAsync(runFixture('invalid_version'), { message: /file/u })
 })

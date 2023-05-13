@@ -5,7 +5,6 @@ import { each } from 'test-each'
 import { runFixture, setHomeDir } from './helpers/main.test.js'
 import { TEST_VERSION, HOME_TEST_VERSION } from './helpers/versions.test.js'
 
-
 const HOME_DIR = setHomeDir()
 
 each(
