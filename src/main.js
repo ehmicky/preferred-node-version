@@ -4,14 +4,17 @@ import { getError } from './error.js'
 import { findVersion } from './find.js'
 import { getOpts } from './options.js'
 
+export { NODE_VERSION_FILES } from './load.js'
+
 // Get the preferred Node.js version of a user or project by looking up its
 // `.nvmrc` (or similar files) or `package.json` `engines.node`.
 const preferredNodeVersion = async (opts) => {
-  const { cwd, globalOpt, nodeVersionAliasOpts } = getOpts(opts)
-  const { filePath, envVariable, rawVersion } = await findVersion(
+  const { cwd, globalOpt, files, nodeVersionAliasOpts } = getOpts(opts)
+  const { filePath, envVariable, rawVersion } = await findVersion({
     cwd,
     globalOpt,
-  )
+    files,
+  })
 
   if (rawVersion === undefined) {
     return {}

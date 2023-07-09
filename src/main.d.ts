@@ -23,6 +23,14 @@ export interface Options {
   global?: boolean
 
   /**
+   * Additional files to lookup.
+   * Their filenames must be one of `package.json`, `.nvmrc`, etc.
+   *
+   * @default []
+   */
+  files?: string[]
+
+  /**
    * Base URL.
    * Can be customized (for example `https://npmmirror.com/mirrors/node`).
    *
@@ -111,8 +119,18 @@ export type PreferredNodeVersion = Partial<{
  *
  * // Start looking for a Node.js version file from this directory instead
  * const { version } = await preferredNodeVersion({ cwd: '/path/to/cwd' })
+ *
+ * // Search for specific files
+ * await preferredNodeVersion({
+ *   files: ['/path/to/.nvmrc', '/path/to/package.json'],
+ * })
  * ```
  */
 export default function preferredNodeVersion(
   options?: Options,
 ): Promise<PreferredNodeVersion>
+
+/**
+ * List of filenames being searched: `.nvmrc`, `package.json`, etc.
+ */
+export declare const NODE_VERSION_FILES: string[]

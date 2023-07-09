@@ -1,3 +1,12 @@
+# 4.2.0
+
+## Features
+
+- Add a [`files` option](README.md#files) to target specific files, such as
+  `"/path/to/.nvmrc"`.
+- Export the list of searched files as
+  [`NODE_VERSION_FILES`](README.md#node_version_files)
+
 # 4.1.0
 
 ## Features

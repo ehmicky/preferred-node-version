@@ -6,11 +6,21 @@ import { RESOLVED_VERSION_RANGE } from './helpers/versions.test.js'
 
 import preferredNodeVersion from 'preferred-node-version'
 
-each([true, { fetch: 0 }, { cwd: true }], ({ title }, options) => {
-  test(`Validates options | ${title}`, async (t) => {
-    await t.throwsAsync(preferredNodeVersion(options))
-  })
-})
+each(
+  [
+    true,
+    { fetch: 0 },
+    { cwd: true },
+    { files: 'path' },
+    { files: [true] },
+    { files: [''] },
+  ],
+  ({ title }, options) => {
+    test(`Validates options | ${title}`, async (t) => {
+      await t.throwsAsync(preferredNodeVersion(options))
+    })
+  },
+)
 
 each(
   [`${FIXTURES_DIR}/version_range`, new URL('version_range', FIXTURES_DIR_URL)],

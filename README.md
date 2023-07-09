@@ -43,6 +43,13 @@ await preferredNodeVersion({ global: true })
 await preferredNodeVersion({ cwd: '/path/to/cwd' })
 ```
 
+```js
+// Search for specific files
+await preferredNodeVersion({
+  files: ['/path/to/.nvmrc', '/path/to/package.json'],
+})
+```
+
 # Install
 
 ```bash
@@ -119,6 +126,14 @@ If `true`, find the global Node.js version instead:
 - use only the home directory and environment variables
 - ignore the current directory and parent directories
 
+#### files
+
+_Type_: `string[]`\
+_Default_: `[]`
+
+Additional files to lookup. Their filenames must be one of `package.json`,
+`.nvmrc`, etc.
+
 #### mirror
 
 _Type_: `string`\
@@ -147,6 +162,12 @@ _Type_:
 [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)
 
 Cancels when the signal is aborted.
+
+## NODE_VERSION_FILES
+
+_Type_: `string[]`
+
+List of filenames being searched: `.nvmrc`, `package.json`, etc.
 
 # See also
 

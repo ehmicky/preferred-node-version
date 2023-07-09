@@ -12,13 +12,15 @@ export const getOpts = (opts = {}) => {
   const {
     cwd = '.',
     global: globalOpt = false,
+    files = [],
     fetch: fetchOpt,
     mirror,
     signal,
   } = opts
   const cwdA = normalizeCwd(cwd)
+  validateFiles(files)
   const nodeVersionAliasOpts = { fetch: fetchOpt, mirror, signal }
-  return { cwd: cwdA, globalOpt, nodeVersionAliasOpts }
+  return { cwd: cwdA, globalOpt, files, nodeVersionAliasOpts }
 }
 
 const normalizeCwd = (cwd) => {
@@ -34,3 +36,11 @@ const normalizeCwd = (cwd) => {
 }
 
 const { toString: objectToString } = Object.prototype
+
+const validateFiles = (files) => {
+  if (!Array.isArray(files) || !files.every(isDefinedString)) {
+    throw new TypeError(`Option "files" must an array of file paths: ${files}`)
+  }
+}
+
+const isDefinedString = (file) => typeof file === 'string' && file !== ''

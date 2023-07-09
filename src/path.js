@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 
 import pLocate from 'p-locate'
 import { isFile } from 'path-type'
@@ -8,9 +8,10 @@ import { loadVersionFile, NODE_VERSION_FILES } from './load.js'
 
 // Find any file indicating the current directory's Node.js version
 // Use p-locate instead of find-up for performance (more parallelism)
-export const getFilePath = (cwd, globalOpt) => {
+export const getFilePath = ({ cwd, globalOpt, files }) => {
+  const customFiles = files.map((filename) => resolve(cwd, filename))
   const searchFiles = getSearchFiles(cwd, globalOpt)
-  return pLocate(searchFiles, isNodeVersionFile)
+  return pLocate([...customFiles, ...searchFiles], isNodeVersionFile)
 }
 
 const getSearchFiles = (cwd, globalOpt) => {

@@ -4,6 +4,7 @@ import preferredNodeVersion, {
   type Options,
   type PreferredNodeVersion,
   type SemverVersion,
+  NODE_VERSION_FILES,
 } from 'preferred-node-version'
 
 const result = await preferredNodeVersion()
@@ -25,6 +26,13 @@ await preferredNodeVersion({ global: true })
 expectAssignable<Options>({ global: true })
 // @ts-expect-error
 await preferredNodeVersion({ global: 'true' })
+
+await preferredNodeVersion({ files: ['path'] })
+expectAssignable<Options>({ files: ['path'] })
+// @ts-expect-error
+await preferredNodeVersion({ files: 'path' })
+// @ts-expect-error
+await preferredNodeVersion({ files: [true] })
 
 await preferredNodeVersion({ mirror: 'https://example.com' })
 expectAssignable<Options>({ mirror: 'https://example.com' })
@@ -56,3 +64,5 @@ expectType<SemverVersion | undefined>(version)
 expectType<string | undefined>(rawVersion)
 expectType<string | undefined>(filePath)
 expectType<string | undefined>(envVariable)
+
+expectType<string[]>(NODE_VERSION_FILES)

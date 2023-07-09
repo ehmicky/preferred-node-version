@@ -1,10 +1,15 @@
 import { writeFile, unlink } from 'node:fs/promises'
+import { fileURLToPath } from 'node:url'
 
 import test from 'ava'
 import { each } from 'test-each'
 
 import { runFixture, FIXTURES_DIR } from './helpers/main.test.js'
 import { TEST_VERSION } from './helpers/versions.test.js'
+
+import preferredNodeVersion, {
+  NODE_VERSION_FILES,
+} from 'preferred-node-version'
 
 each(
   [
@@ -52,4 +57,55 @@ test('Ignore invalid package.json', async (t) => {
   } finally {
     await unlink(packageJsonPath)
   }
+})
+
+test('"files" option with absolute path', async (t) => {
+  const { version } = await preferredNodeVersion({
+    files: [`${FIXTURES_DIR}/naverc/.naverc`],
+  })
+  t.is(version, TEST_VERSION)
+})
+
+test('"files" option with relative path', async (t) => {
+  const { version } = await preferredNodeVersion({
+    files: ['naverc/.naverc'],
+    cwd: FIXTURES_DIR,
+  })
+  t.is(version, TEST_VERSION)
+})
+
+test('"files" option validates filenames', async (t) => {
+  const file = fileURLToPath(new URL(import.meta.url))
+  await t.throwsAsync(preferredNodeVersion({ files: [file] }))
+})
+
+test('"files" option has priority', async (t) => {
+  const { version } = await preferredNodeVersion({
+    files: [`${FIXTURES_DIR}/priority/subdir/.nvmrc`],
+    cwd: `${FIXTURES_DIR}/priority`,
+  })
+  t.is(version, TEST_VERSION)
+})
+
+test('"files" option ignores non-existing files', async (t) => {
+  const { version } = await preferredNodeVersion({
+    files: ['does_not_exist'],
+    cwd: `${FIXTURES_DIR}/nvmrc`,
+  })
+  t.is(version, TEST_VERSION)
+})
+
+test('"files" option ignores directory', async (t) => {
+  const helpersDir = fileURLToPath(new URL('helpers', import.meta.url))
+  const { version } = await preferredNodeVersion({
+    files: [helpersDir],
+    cwd: `${FIXTURES_DIR}/nvmrc`,
+  })
+  t.is(version, TEST_VERSION)
+})
+
+test('NODE_VERSION_FILES is exported', (t) => {
+  t.true(Array.isArray(NODE_VERSION_FILES))
+  t.not(NODE_VERSION_FILES.length, 0)
+  t.is(typeof NODE_VERSION_FILES[0], 'string')
 })

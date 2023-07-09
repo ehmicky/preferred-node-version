@@ -15,6 +15,14 @@ export const loadVersionFile = async (filePath) => {
 
   const filename = basename(filePath)
   const loadFunction = LOAD_FUNCTIONS[filename]
+
+  if (loadFunction === undefined) {
+    throw new Error(
+      `Option "files" is invalid: ${filename}
+Allowed values are: ${NODE_VERSION_FILES.join(', ')}`,
+    )
+  }
+
   const rawVersion = loadFunction(contentA)
   return rawVersion
 }
