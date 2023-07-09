@@ -141,6 +141,13 @@ The list of available Node.js versions is cached for one hour by default. If the
 - `true`: the cache will not be used
 - `false`: the cache will be used even if it's older than one hour
 
+#### signal
+
+_Type_:
+[`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)
+
+Cancels when the signal is aborted.
+
 # See also
 
 - [`nve`](https://github.com/ehmicky/nve): Run a specific Node.js version (CLI)

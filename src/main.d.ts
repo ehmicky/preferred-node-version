@@ -34,6 +34,11 @@ export interface Options {
   mirror?: NodeVersionAliasOptions['mirror']
 
   /**
+   * Cancels when the signal is aborted.
+   */
+  signal?: NodeVersionAliasOptions['signal']
+
+  /**
    * The list of available Node.js versions is cached for one hour by default.
    * If the `fetch` option is:
    *  - `true`: the cache will not be used

@@ -9,9 +9,15 @@ export const getOpts = (opts = {}) => {
     throw new TypeError(`Options must be a plain object: ${opts}`)
   }
 
-  const { cwd = '.', global: globalOpt = false, fetch: fetchOpt, mirror } = opts
+  const {
+    cwd = '.',
+    global: globalOpt = false,
+    fetch: fetchOpt,
+    mirror,
+    signal,
+  } = opts
   const cwdA = normalizeCwd(cwd)
-  const nodeVersionAliasOpts = { fetch: fetchOpt, mirror }
+  const nodeVersionAliasOpts = { fetch: fetchOpt, mirror, signal }
   return { cwd: cwdA, globalOpt, nodeVersionAliasOpts }
 }
 
