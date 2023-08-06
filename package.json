@@ -42,7 +42,10 @@
   ],
   "license": "Apache-2.0",
   "homepage": "https://www.github.com/ehmicky/preferred-node-version",
-  "repository": "ehmicky/preferred-node-version",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehmicky/preferred-node-version.git"
+  },
   "bugs": {
     "url": "https://github.com/ehmicky/preferred-node-version/issues"
   },
