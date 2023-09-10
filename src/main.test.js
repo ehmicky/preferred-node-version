@@ -28,9 +28,8 @@ test('Resolves version ranges', async (t) => {
 })
 
 test('Returns information about the resolution', async (t) => {
-  const { filePath, envVariable, rawVersion, version } = await runFixture(
-    'version_range',
-  )
+  const { filePath, envVariable, rawVersion, version } =
+    await runFixture('version_range')
   t.is(filePath, join(FIXTURES_DIR, 'version_range', '.nvmrc'))
   t.true(envVariable === undefined)
   t.is(rawVersion, VERSION_RANGE)
