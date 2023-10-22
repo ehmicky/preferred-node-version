@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "is-plain-obj": "^4.1.0",
-    "node-version-alias": "^4.1.0",
+    "node-version-alias": "^5.0.0",
     "p-locate": "^6.0.0",
     "path-type": "^5.0.0"
   },
