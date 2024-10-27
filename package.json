@@ -19,8 +19,8 @@
   },
   "description": "Get the preferred Node.js version of a project or user",
   "keywords": [
-    "nodejs",
     "node",
+    "nodejs",
     "nvm",
     "npx",
     "versions",
