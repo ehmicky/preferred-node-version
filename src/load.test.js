@@ -1,10 +1,10 @@
-import { writeFile, unlink } from 'node:fs/promises'
+import { unlink, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 
 import test from 'ava'
 import { each } from 'test-each'
 
-import { runFixture, FIXTURES_DIR } from './helpers/main.test.js'
+import { FIXTURES_DIR, runFixture } from './helpers/main.test.js'
 import { TEST_VERSION } from './helpers/versions.test.js'
 
 import preferredNodeVersion, {

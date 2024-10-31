@@ -1,6 +1,6 @@
 import type {
-  SemverVersion,
   Options as NodeVersionAliasOptions,
+  SemverVersion,
 } from 'node-version-alias'
 
 export type { SemverVersion }

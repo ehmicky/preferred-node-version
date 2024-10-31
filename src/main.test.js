@@ -4,15 +4,15 @@ import test from 'ava'
 import isPlainObj from 'is-plain-obj'
 
 import {
-  runFixture,
   FIXTURES_DIR,
+  runFixture,
   setEmptyHomeDir,
   unsetHomeDir,
 } from './helpers/main.test.js'
 import {
   ALIAS_VERSION,
-  VERSION_RANGE,
   RESOLVED_VERSION_RANGE,
+  VERSION_RANGE,
 } from './helpers/versions.test.js'
 
 import preferredNodeVersion from 'preferred-node-version'

@@ -1,9 +1,9 @@
-import { stat, chmod } from 'node:fs/promises'
-import { platform, cwd as getCwd, chdir } from 'node:process'
+import { chmod, stat } from 'node:fs/promises'
+import { chdir, cwd as getCwd, platform } from 'node:process'
 
 import test from 'ava'
 
-import { runFixture, FIXTURES_DIR } from './helpers/main.test.js'
+import { FIXTURES_DIR, runFixture } from './helpers/main.test.js'
 import { TEST_VERSION } from './helpers/versions.test.js'
 
 import preferredNodeVersion from 'preferred-node-version'

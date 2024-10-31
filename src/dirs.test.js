@@ -2,7 +2,7 @@ import test from 'ava'
 import { each } from 'test-each'
 
 import { runFixture, setHomeDir } from './helpers/main.test.js'
-import { TEST_VERSION, HOME_TEST_VERSION } from './helpers/versions.test.js'
+import { HOME_TEST_VERSION, TEST_VERSION } from './helpers/versions.test.js'
 
 import preferredNodeVersion from 'preferred-node-version'
 
